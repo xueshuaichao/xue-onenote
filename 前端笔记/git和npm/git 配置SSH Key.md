@@ -27,13 +27,14 @@ $ ssh-keygen -t ed25519 -C "your_email@example.com"
 $ ssh-keygen -t rsa -C "邮箱"
 ```
 > 后边的邮箱随便填，只是个标识
-> ed25519 是生成文件的名称，随便填
+> ed25519 是密钥的类型
+![alt text](image-5.png)
 
 一直回车，生成默认的就行
 ![alt text](image-3.png)
 生成的公钥和私钥还能设置name。
 
-3. 把公钥添加到github中
+1. 把公钥添加到github中
  执行查看公钥的命令！
  cat ~/.ssh/id_rsa.pub 
 
