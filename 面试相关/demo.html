@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <style>
+      /* 填写样式 */
+    </style>
+  </head>
+  <button onclick="handleclick()">按钮</button>
+  <div id="result"></div>
+  <body>
+    <!-- 填写标签 -->
+
+    <script type="text/javascript">
+      let n = 0;
+      while (n <= 5) {
+        n++;
+        console.log(n);
+      }
+
+      do {
+        n++;
+        console.log(n);
+      } while (n <= 5);
+
+      // // typeof 只能判断基本数据类型
+      // console.log(typeof undefined); // undefined
+      // console.log(typeof null); // object
+      // console.log(typeof "123"); // string
+      // console.log(typeof 123); // number
+      // console.log(typeof true); // boolean
+      // console.log(typeof function () {}); // function
+      // console.log(typeof {}); //object
+
+      // // -----------------
+      // //instancof 是否是某个构造函数的实例
+      // //只能区分 array string number boolean 这些构造函数创建的对象， 注意这里说的创建指通过new创建
+      // // 但对一些基本类型，比如string，number，boolean，null，undefined 则返回false。
+      // console.log([] instanceof Array); //true
+      // console.log(new String("13") instanceof String); //true
+      // console.log("test" instanceof String); //false
+      // console.log(null instanceof Object); //false
+    </script>
+  </body>
+</html>
