@@ -40,7 +40,13 @@ $ ssh-keygen -t rsa -C "邮箱"
 
 ![alt text](image-4.png)
 
+ ### 密钥生成的目录
+ mac：
+ ```shell
+ open ~/.ssh
+ ```
 
+ windows:
  
 
 
