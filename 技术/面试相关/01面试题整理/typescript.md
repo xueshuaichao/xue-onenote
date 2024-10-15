@@ -1,8 +1,8 @@
  # Typescript
 
- ##  interface和type的区别
+###  interface和type的区别
 
-1. 都能描述对象，但 type 还能描述其他任意类型，例如 string、number 等基本类型、联合或交叉等类型。
+- 都能描述对象，但 type 还能描述其他任意类型，例如 string、number 等基本类型、联合或交叉等类型。
 
 
 ```javascript
@@ -27,7 +27,7 @@ type 字符串或数字 = string | number
 const sex:字符串或数字 = 0
 ```
 
-2. 都能进行类型拓展，interface 通过 extends 来实现，type 通过 & 交叉运算符号形成交叉类型。
+- 都能进行类型拓展，interface 通过 extends 来实现，type 通过 & 交叉运算符号形成交叉类型。
 
 interface
 ```javascript
@@ -80,7 +80,7 @@ const person: IPerson ={
 }
 ```
 
-4. 一般应该怎样去用  
+总结： 一般应该怎样去用  
 个人一般使用 interface 来描述对象结构，用 type 来描述类型之间的关系
 ```javascript
 interface IPerson {
@@ -91,6 +91,7 @@ type TTemp ='男' |'女'|0|1
 ```
 
 
+### ts相关面试题
 - Typescript相较于JavaScript有什么优势和劣势？
 
 - const func = (a, b) => a + b; 要求编写Typescript，要求a，b参数类型一致，都为number或者都为string

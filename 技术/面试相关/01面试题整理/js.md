@@ -1,88 +1,24 @@
 
-- [1.javascript基本数据类型？](#1javascript基本数据类型)
-- [2、介绍JS有哪些内置对象？](#2介绍js有哪些内置对象)
-- [3、浅谈javascript中变量和函数声明的提升？](#3浅谈javascript中变量和函数声明的提升)
-- [4、什么是闭包（一次答全，不要问一个答一个）](#4什么是闭包一次答全不要问一个答一个)
-- [37、说说内存泄漏？](#37说说内存泄漏)
-- [5、说说this对象的理解？](#5说说this对象的理解)
-- [6、new操作符具体做了干了什么？| new的时候都做了哪些操作](#6new操作符具体做了干了什么-new的时候都做了哪些操作)
-- [7、说说堆和栈的区别？](#7说说堆和栈的区别)
-- [8、JS数组和对象的遍历方式，以及几种方式的比较。](#8js数组和对象的遍历方式以及几种方式的比较)
-- [19 forin与forof的区别](#19-forin与forof的区别)
-- [9.apply, call,bind](#9apply-callbind)
-- [10、防抖和节流（要能手写）](#10防抖和节流要能手写)
-- [11、说说箭头函数与普通函数的区别？](#11说说箭头函数与普通函数的区别)
-- [13、javascript实现继承的几种方法？](#13javascript实现继承的几种方法)
-- [14、对原生javascript的了解程度？](#14对原生javascript的了解程度)
-- [15、谈一谈你对“函数式编程”的理解？](#15谈一谈你对函数式编程的理解)
-- [函数柯里化](#函数柯里化)
-- [16、说说你对作用域链的理解？](#16说说你对作用域链的理解)
-- [17、javascript原型、原型链是什么？有什么特点？](#17javascript原型原型链是什么有什么特点)
-- [20. map和set的区别](#20-map和set的区别)
-- [map和对象有什么区别](#map和对象有什么区别)
-- [21. window.onload 和 $(document).ready 有何不同？](#21-windowonload-和-documentready-有何不同)
-- [22、说几条写javascript的基本规范？](#22说几条写javascript的基本规范)
-- [23、eval是做什么的？](#23eval是做什么的)
-- [24、null和underfined的区别？](#24null和underfined的区别)
-- [25、\[1,2,3\].map(parseInt)的输出结果是什么？](#25123mapparseint的输出结果是什么)
-- [26、use strict的理解和作用？](#26use-strict的理解和作用)
-- [27、说说严格模式的限制？](#27说说严格模式的限制)
-- [28、说说对JSON的理解？](#28说说对json的理解)
-- [29、说说JS延迟加载的方式有哪些？](#29说说js延迟加载的方式有哪些)
-- [31、如何通过JS判断一个数组| 如何判断数据类型？](#31如何通过js判断一个数组-如何判断数据类型)
-  - [typeof](#typeof)
-- [11.undefine和Null的区别？](#11undefine和null的区别)
-- [32、说说let、var、const的理解？](#32说说letvarconst的理解)
-- [33、javascript中caller和callee的使用？](#33javascript中caller和callee的使用)
-- [35、javascript数组去重的方法汇总？](#35javascript数组去重的方法汇总)
-- [36、javaScript变量提升？](#36javascript变量提升)
-- [39、javascript数组排序的几种方式？](#39javascript数组排序的几种方式)
-- [45、javascript深浅拷贝？](#45javascript深浅拷贝)
-- [手写浅拷贝深拷贝⭐⭐⭐⭐⭐](#手写浅拷贝深拷贝)
-- [46、es6新增了哪些方法](#46es6新增了哪些方法)
-- [47、谈谈ES6中的class](#47谈谈es6中的class)
-- [CommonJs 与 ES6 的区别](#commonjs-与-es6-的区别)
-- [48、对模块化的理解： （水滴）](#48对模块化的理解-水滴)
-- [49、require和import的区别](#49require和import的区别)
-- [exports和module.exports有什么区别？⭐⭐⭐](#exports和moduleexports有什么区别)
-- [50、jquerydom互转的几种方式](#50jquerydom互转的几种方式)
-- [4.浏览器的多进程和javaScript的单线程](#4浏览器的多进程和javascript的单线程)
-- [51、js执行机制](#51js执行机制)
-- [54、事件捕获和事件冒泡哪个先触发](#54事件捕获和事件冒泡哪个先触发)
-- [57、async和await的原理和使用](#57async和await的原理和使用)
-- [58、Promise是什么？](#58promise是什么)
-- [59、reduce方法](#59reduce方法)
-- [60、高阶函数有哪些](#60高阶函数有哪些)
-- [61、常用操作字符串方法](#61常用操作字符串方法)
-- [62、常用操作数组方法](#62常用操作数组方法)
-- [为什么 0.1 + 0.2不等于0.3,如何解决这个问题](#为什么-01--02不等于03如何解决这个问题)
-- [如何解决](#如何解决)
-- [那为什么0.2+0.3=0.5呢?](#那为什么020305呢)
-- [那既然0.1不是0.1了，为什么在console.log(0.1)的时候还是0.1呢?](#那既然01不是01了为什么在consolelog01的时候还是01呢)
-- [js的设计模式有哪些](#js的设计模式有哪些)
-- [27.如何将类数组转换成数组？](#27如何将类数组转换成数组)
-- [addEventListener第三个参数是啥,还可以为其它值吗](#addeventlistener第三个参数是啥还可以为其它值吗)
-- [while循环，do while和while的区别](#while循环do-while和while的区别)
 
-
- ## 1.javascript基本数据类型？
-- 基础类型：Boolean,Number,String,Undefined,Null,Symbol
+## 1.javascript基本数据类型？
+- 基础类型：Number,String,Boolean,Undefined,Null,Symbol
 - 引用类型：Object,Array,Function
 - symbol生成的是一个全局唯一的值,Symbol(1) === Symbol(1)是为false的。
 
+symbol主要用作什么，没说出来
 
- ## 2、介绍JS有哪些内置对象？
+## 2、介绍JS有哪些内置对象？
 - 数据封装类对象：Object、Array、Number、Boolean、String。
 - 其他对象：Function、Arguments、Math、Date、RegExp、Error。
 
- ## 3、浅谈javascript中变量和函数声明的提升？
+## 3、浅谈javascript中变量和函数声明的提升？
 1. 变量和函数声明的提升会被提升到最顶部去执行；
 2. 函数的提升高于变量的提升；
 3. 匿名函数不会被提升；
 
 
 
- ## 4、什么是闭包（一次答全，不要问一个答一个）
+## 4、什么是闭包（一次答全，不要问一个答一个）
  ```
 概念：
 闭包通俗来讲，就是a函数里面还有b函数，而b函数可以访问a函数里面的变量。
@@ -123,7 +59,7 @@ Counter.increment(); //输出 1
 Counter.increment(); //输出 2
 Counter.decrement(); //输出 1
  ```
- ## 37、说说内存泄漏？
+## 37、说说内存泄漏？
 概念一： 
 内存泄漏指的是当一个不再需要的对象仍然被占用内存，且不能被垃圾回收机制回收的情况。
 
@@ -172,15 +108,15 @@ function handleclick() {
 
 
 
- ## 5、说说this对象的理解？
+## 5、说说this对象的理解？
 1. this总是指向直接调用者；
 2. 如果有new关键字，则指向new出来的那个对象；
 3. 在事件中，this指向触发这个事件的对象
 
- ## 6、new操作符具体做了干了什么？| new的时候都做了哪些操作
+## 6、new操作符具体做了干了什么？| new的时候都做了哪些操作
 1. 创建一个新对象
 2. 使新对象的__proto__指向原函数的prototype
-3. 改变this指向（指向新的obj）并执行该函数，执行结果保存起来作为result
+3. this指向新的 obj ，并执行该函数
 4. 判断执行函数的结果是不是对象类型，如果是则返回result，如果不是则返回之前的新对象
 
 验证过程
@@ -217,16 +153,16 @@ console.log(Foo.prototype === foo.__proto__) // true
 2.箭头函数没有原型
 
 
- ## 7、说说堆和栈的区别？
+## 7、说说堆和栈的区别？
 - 栈内存：存储的都是局部变量，后进先出，栈内存的更新速度很快，因为局部变量的声明周期都很短。
 - 堆内存：存储的都是数组和对象，堆里面的实体不会被释放，但是会被当成垃圾。
 
- ## 8、JS数组和对象的遍历方式，以及几种方式的比较。
+## 8、JS数组和对象的遍历方式，以及几种方式的比较。
 - for循环——循环每进行一次，就要检查一下数组的长度，速度比较慢；
 - for in 循环——需要分析出array的每一个属性，这个操作性能开销很大。
 - forEach循环——不能遍历对象，不可以使用continue、break跳出循环，且使用return是跳出本次循环。
 
- ## 19 forin与forof的区别
+## 19 forin与forof的区别
 for in 循环的是键， for of 循环的是值
 ```javascript
 const arr = [1, 2, 3];
@@ -255,7 +191,7 @@ for (const key in person) {
 }
 ```
 
- ## 9.apply, call,bind
+## 9.apply, call,bind
 - 相似之处：
 1. 都是用来改变函数的this对象的指向的。
 - 区别
@@ -279,7 +215,7 @@ fn.call(obj); //听风是风
 已整理
 
 
- ## 10、防抖和节流（要能手写）
+## 10、防抖和节流（要能手写）
 - 防抖（debounce）：多用在搜索框中，在停止输入后提交一次 ajax 请求
 
 防抖就是一个事件完成后n毫秒之后再执行回调，如果这n毫秒内又重复一次事件，就重新计算时间
@@ -334,11 +270,12 @@ function showTop() {
 window.onscroll = throttle(showTop, 2000)
 ```
 
- ## 11、说说箭头函数与普通函数的区别？
-1. 箭头函数的this指向上下文，而不是使用时的对象；
-2. 箭头函数不可以当作构造函数；
-3. 箭头函数隐式返回，只return一条语句时，可以直接写在后面，减少代码量
-4. 箭头函数全都是匿名函数， 普通函数可以有匿名函数，也可以有具名函数。
+## 11、说说箭头函数与普通函数的区别？
+其实最主要就亮点：
+1.箭头函数的this指向上下文
+2.箭头函数没有原型，不可以当作构造函数
+
+3.箭头函数全都是匿名函数， 普通函数可以是匿名函数也可以是具名函数。
 ```javascript
 // 具名函数
 function func(){
@@ -359,81 +296,81 @@ let func=()=>{
 不可以使用yield命令，因此箭头函数不能当作Generator函数。~~
 
 
- ## 13、javascript实现继承的几种方法？
- 子类具有父类的属性和方法。
+## 13、javascript实现继承的几种方法？
+什么是继承：子类具有父类的属性和方法。
 实现方式有原型链继承、构造函数继承、组合继承、寄生式继承、寄生组合式继承
 
 详见专题中的几种继承方法
 
 1. 原型继承（把父类的实例作为子类的原型）
 - 缺点：
-  1. 父类所有的引用数据类型（对象，数组）会被子类共享
+  1. 父类的引用数据类型（对象，数组）会被子类共享，会相互影响
   2. 子类实例不能给父类构造函数传参（因为父类只new一次，子类可生成多个，不能个性化处理）
 ```javascript
-      function Person() {
-        this.name = "小明";
-        this.eats = ["苹果"];
-        this.getName = function () {
-          console.log(this.name);
-        };
-      }
-      Person.prototype.get = () => {
-        console.log("person.prototype上的方法");
-      };
+function Person() {
+  this.name = "小明";
+  this.eats = ["苹果"];
+  this.getName = function () {
+    console.log(this.name);
+  };
+}
+Person.prototype.get = () => {
+  console.log("person.prototype上的方法");
+};
 
-      function Student() {}
-      Student.prototype = new Person();
-      const stu1 = new Student();
-      stu1.name = "小花";
-      stu1.eats.push("香蕉");
-      console.log(stu1.name);
-      console.log(stu1.eats);
-      stu1.getName();
-      stu1.get();
+function Student() {}
+Student.prototype = new Person();
+const stu1 = new Student();
+stu1.name = "小花";
+stu1.eats.push("香蕉");
+console.log(stu1.name);
+console.log(stu1.eats);
+stu1.getName();
+stu1.get();
 
-      console.log("--------------");
+console.log("--------------");
 
-      const stu2 = new Student();
-      console.log(stu2.name);
-      console.log(stu2.eats);
-      stu2.getName();
-      stu2.get();
+const stu2 = new Student();
+console.log(stu2.name);
+console.log(stu2.eats);
+stu2.getName();
+stu2.get();
 ```
 
 1. 构造函数继承
 - 优点：父类的引用类型数据不会被子类共享，不会相互影响
 - 缺点：子类不能访问父类的原型属性(Person.prototype)
 ```javascript
-  function Person() {
-        this.name = "小明";
-        this.eats = ["苹果"];
-        this.getName = function () {
-          console.log(this.name);
-        };
-      }
+function Person() {
+  this.name = "小明";
+  this.eats = ["苹果"];
+  this.getName = function () {
+    console.log(this.name);
+  };
+}
 
-      Person.prototype.get = () => {
-        console.log("person.prototype上的方法");
-      };
-      function Student() {
-        Person.call(this);
-      }
-      // Student.prototype = new Person();
-      // 没有这行代码，下边的组合继承才有
-      const stu1 = new Student();
-      stu1.name = "小花";
-      stu1.eats.push("香蕉");
-      console.log(stu1.name);
-      console.log(stu1.eats);
-      stu1.getName();
-      // stu1.get();
-      console.log("--------------------");
+Person.prototype.get = () => {
+  console.log("person.prototype上的方法");
+};
+function Student() {
+  Person.call(this);
+}
+// Student.prototype = new Person();
+// 没有这行代码，下边的组合继承才有
+const stu1 = new Student();
+stu1.name = "小花";
+stu1.eats.push("香蕉");
+console.log(stu1.name);
+console.log(stu1.eats);
+stu1.getName();
+// stu1.get();
+console.log("--------------------");
 
-      const stu2 = new Student();
-      console.log(stu2.name);
-      console.log(stu2.eats);
-      stu2.getName();
-      // stu2.get();
+const stu2 = new Student();
+console.log(stu2.name);
+console.log(stu2.eats);
+stu2.getName();
+// stu2.get();
 ```
 
 
@@ -450,22 +387,21 @@ let func=()=>{
 目前最优的继承方案
 
 1. es6 class类继承extends  
-（寄生组合继承的语法糖），子类只要继承父类，可以不写 constructor ，一旦写了，则在 constructor 中的第一句话，必须是 super。
+（寄生组合继承的语法糖），子类只要继承父类，可以不写 constructor，一旦写了，则在 constructor 中的第一句话，必须是 super。
 ```javascript
-    class Son3 extends Father { // Son.prototype.__proto__ = Father.prototype
-      constructor(y) {
-        super(200)  // super(200) => Father.call(this,200)
-        this.y = y
-      }
-    }
-
+class Son3 extends Father { // Son.prototype.__proto__ = Father.prototype
+  constructor(y) {
+    super(200)  // super(200) => Father.call(this,200)
+    this.y = y
+  }
+}
 ```
 完美
 
- ## 14、对原生javascript的了解程度？
+## 14、对原生javascript的了解程度？
 数据类信、运算、对象、Function、继承、闭包、作用域、原型链、事件、RegExp、JSON、Ajax、DOM、BOM、内存泄露、跨域、异步装载、模板引擎、前端MVC、路由、模块化、Canvas、ECMAScript。
 
- ## 15、谈一谈你对“函数式编程”的理解？
+## 15、谈一谈你对“函数式编程”的理解？
 
 1.简单来说，函数式编程是一种基于函数编程规范。
 2.函数式编程鼓励使用不可变数据和无副作用的函数。这意味着函数只依赖于它的输入，并且不会更改任何外部状态，使得更容易进行推理和测试
@@ -518,7 +454,7 @@ var add1 = function (num) { return num + 1 };
 // 对于不纯的函数我们尽量把它控制在可控范围内发生，这个会在文章后面提到。
 ```
 
- ## 函数柯里化
+## 函数柯里化
 什么是柯里化（curry）？curry 的概念很简单，只传递给函数一部分参数来调用它，让它返回一个函数去处理剩下的参数
 
 ```javascript
@@ -560,18 +496,18 @@ addTen(2); // 12
 
 
 
- ## 16、说说你对作用域链的理解？
+## 16、说说你对作用域链的理解？
 1. 保证执行环境里变量和函数的访问是有序的，
 2. 变量只能向上访问，变量访问到window对象即被终止，
 3. 向下访问变量是不被允许的。
 
- ## 17、javascript原型、原型链是什么？有什么特点？
-1. 当我们声明一个函数的时，就会产生一个原型对象，通过prototype访问，当new一个实例对象，该对象都会从原型对象中继承属性、方法，通过__proto __能访问到原型。
+## 17、javascript原型、原型链是什么？有什么特点？
+1. 当我们声明一个函数的时，就会产生一个原型对象，通过prototype访问，当new一个实例对象，该对象都会从原型对象中继承属性、方法，通过__proto__能访问到原型。
 2. 当寻找该对象的属性时，先会查找对象本身是否存在该属性，如果不存在，就通过其proto属性逐级往上找,所以会形成一个链条，最顶点是null（记住了Object也有__proto__属性，是null），如果没有就返回null
 
 
 
- ## 20. map和set的区别
+## 20. map和set的区别
 Set 和 Map 主要的应用场景在于 数据重组 和 数据储存。
 Set 是一种叫做集合的数据结构，Map 是一种叫做字典的数据结构。
 
@@ -637,7 +573,7 @@ m.has(o)  // false
 
 ```
 
- ## map和对象有什么区别
+## map和对象有什么区别
  1. map是一个集合类型，可储存多重数据类型 (直接回答最根本的，而不是一大堆无关紧要的)
 
 ~~1. 普通对象使用字面量进行初始化,而 Map 需要 Map() 构造函数进行初始化~~
@@ -645,44 +581,44 @@ m.has(o)  // false
 ~~3. Map 对象在涉及频繁添加和删除键值对的场景中表现更好，而普通对象没有优化。~~
 ~~4. 普通对象能直接添加，map需要借助响应的 get，set方法~~
 
- ## 21. window.onload 和 $(document).ready 有何不同？
+## 21. window.onload 和 $(document).ready 有何不同？
 - window.onload除了要等待 DOM 被创建还要等到包括大型图片在内的所有外部资源都完全加载,执行时有延迟。
 - $(document).ready 等到DOM结构绘制完成就可以执行，不必等到所有元素加载完成 ，从而执行起来更快。
 - 使用 $(document).ready() 可以在网页里多次使用，
 - $(document).ready()比用 window.onload 事件要更好些。
 
- ## 22、说几条写javascript的基本规范？
+## 22、说几条写javascript的基本规范？
 1. 不要在同一行声明多个变量；
 2. 使用=== !==来判断true、false;
 3. if语句必须使用大括号；
 
 
- ## 23、eval是做什么的？
+## 23、eval是做什么的？
 eval可以把字符串解析成JS代码并运行；
 避免使用eval,不安全，非常消耗性能；
 把JSON字符串传换成JSON对象时可以使用eval。
 
- ## 24、null和underfined的区别？
+## 24、null和underfined的区别？
 null表示定义了一个对象，值为“空值”；
 underfined表示这个不存在这个值。
 
- ## 25、[1,2,3].map(parseInt)的输出结果是什么？
+## 25、[1,2,3].map(parseInt)的输出结果是什么？
 [1,NaN,NaN],因为parseInt需要两个参数(val,radix)。
 
- ## 26、use strict的理解和作用？
+## 26、use strict的理解和作用？
 use strict是ES5新增的一种严格运行模式。可以使得JS代码在严格模式下运行，使得编码更加规范更加严谨，消除了一些怪异行为。
 
- ## 27、说说严格模式的限制？
+## 27、说说严格模式的限制？
 (1)变量必须先声明后再使用；
 (2)函数的参数不能出现同名属性，否则报错；
 (3)禁止this指向全局对象。
 
- ## 28、说说对JSON的理解？
+## 28、说说对JSON的理解？
 - JSON是一种轻量级的数据交换格式；
 - 数据格式简单，易于读写，占用带宽小；
 - JSON字符串可以和JSON对象互转；
 
- ## 29、说说JS延迟加载的方式有哪些？
+## 29、说说JS延迟加载的方式有哪些？
 defer和async，动态创建DOM(用得最多),按需加载。
 - defer 属性：将 defer 属性设置为 true，浏览器会在 HTML 解析完成后再加载脚本，并且在 DOMContentLoaded 事件触发前执行脚本，从而避免了阻塞页面渲染。但是如果页面中有多个 defer 脚本，它们的执行顺序是不能保证的；
 ```html
@@ -734,9 +670,9 @@ defer和async，动态创建DOM(用得最多),按需加载。
 - 让JS最后加载
 把js外部引入的文件放到页面底部，来让js最后引入，从而加快页面加载速度
 
- ## 31、如何通过JS判断一个数组| 如何判断数据类型？
+## 31、如何通过JS判断一个数组| 如何判断数据类型？
 
- ### typeof
+### typeof
 缺点：  
  只能判断简单类型，不能判断复杂类型
  typeof null 为object，历史遗留的bug
@@ -803,26 +739,23 @@ function gettype(obj) {
 ```
 - 使用ES5新增的方法isArray()
 
- ## 11.undefine和Null的区别？
+## 11.undefine和Null的区别？
 null表示没有对象，即此处不应该有值。转换成数值的时候为0
 undefined表示缺少值，就是此处应该有一个值，但是还未被定义。转换为数值的时候为NaN
 
- ## 32、说说let、var、const的理解？
+## 32、说说let、var、const的理解？
 const和let会形成块级作用域，不支持变量名提升，const一般用于声明常量，let用于声明变量
 
- ## 33、javascript中caller和callee的使用？
-caller返回的一个对函数的引用，该函数调用了当前函数。
-callee返回一个正在执行的function函数，也就是所指定的function对象的正文。
 
- ## 35、javascript数组去重的方法汇总？
+## 35、javascript数组去重的方法汇总？
 1. 使用indexOf（）或 includes 去重，首先创建一个空数组，然后原数组循环遍历，然后判断如果当前的这个值在创建的新数组里面没有，也就是等于-1，那么就添加，如果有，则不添加。
 ```javascript
 let res = []
-    for (let i = 0; i < arr.length; i++) {
-        if (res.indexOf(arr[i]) === -1) {
-            res.push(arr[i])
-        }
+for (let i = 0; i < arr.length; i++) {
+    if (res.indexOf(arr[i]) === -1) {
+        res.push(arr[i])
     }
+}
 ```
 
 
@@ -832,9 +765,9 @@ const arr = [1,2,2,3,4,5,3]
 console.log(new Set(arr))
 
 3. 利用对象的属性不能相同的特点进行去重；
-使用sort()去重；
 
- ## 36、javaScript变量提升？
+
+## 36、javaScript变量提升？
 在生成执行环境时，会有两个阶段。
 
 第一个阶段是创建阶段，JS解释器会找出需要提升的变量和函数，并且会给他们提前在内存中开辟好空间，函数的话会将整个函数存入内存中，变量只声明并且赋值为underfined，
@@ -842,7 +775,7 @@ console.log(new Set(arr))
 第二个阶段，也就是代码执行阶段，我们可以直接提前使用。
 
 
- ## 39、javascript数组排序的几种方式？
+## 39、javascript数组排序的几种方式？
 - 冒泡排序
 假设数组中有n个数，比较相邻两个数的大小，若前者大于后者，则两数交换位置。这样，第一轮结束的时候，就可以选出最大的一个数放在最后面，那么，经过n-1轮之后，所有的数就完成了排序。
 ```javascript
@@ -867,7 +800,7 @@ console.log(arr);//[2, 4, 5, 12, 31, 32, 45, 52, 78, 89]
 - 快排排序
 一个数组里面寻找中间的值作为基准，然后创建两个空数组，循环原数组，将数组的每个值跟基准比较，比基准小的存在一个数组，比基准大的存在一个数组，然后递归执行以上操作，最后将两个数组合并。
 
- ## 45、javascript深浅拷贝？
+## 45、javascript深浅拷贝？
 它们最根本的区别在于是否真正获取了一个对象的复制实体，而不是引用
 - 浅拷贝现在可以使用Object.assign快速实现
 - 实现深拷贝
@@ -877,7 +810,7 @@ console.log(arr);//[2, 4, 5, 12, 31, 32, 45, 52, 78, 89]
 
 
 
- ## 手写浅拷贝深拷贝⭐⭐⭐⭐⭐
+## 手写浅拷贝深拷贝⭐⭐⭐⭐⭐
 ```javascript
     var obj1 = {
       a: {
@@ -933,7 +866,7 @@ console.log(arr);//[2, 4, 5, 12, 31, 32, 45, 52, 78, 89]
 
 
 
- ## 46、es6新增了哪些方法
+## 46、es6新增了哪些方法
 1. let和const变量、class
 2. promise，async/await
 3. 箭头函数
@@ -947,12 +880,13 @@ let {str1, str2} = {str1: 111, str2: 2222};
 2. es7：includes
 3. es8: Object.values() 、Object.entries() 、String.padding 、
 
- ## 47、谈谈ES6中的class
+## 47、谈谈ES6中的class
 首先class是用来创建类的，在传统的js中，没有类的概念。class的作用让原型对象的写法更加清晰
 - 我们在类里面写方法时直接定义在原型对象上面
 - constructor就相当于构造函数，接受参数，Object.prototype.constructor==Object
 - 类必须使用new调用
- ## CommonJs 与 ES6 的区别
+
+## CommonJs 与 ES6 的区别
 
 CommonJS 模块输出的是一个值的拷贝，ES6 模块输出的是值的引用
 CommonjS 模块是运行时加载，ES6 模块是编译时加载。
@@ -962,7 +896,7 @@ CommonjS 模块是运行时加载，ES6 模块是编译时加载。
 > 冷知识：浏览器可以用commonjs吗？
 > 不可以，commonjs是node的模块规范，为什么前端可以写require呢，因为有webpack编译，webpack是基于node的。
 
- ## 48、对模块化的理解： （水滴）
+## 48、对模块化的理解： （水滴）
  ~~ES6之前已经出现了js块加载的方案，最主要的是CommonJS和AMD规范。
 2.不同点：AMD规范则是非同步加载模块，允许指定回调函数。CommonJS规范加载模块是同步的，也就是说，只有加载完成，才能执行后面的操作。
 commonJS主要应用于服务器，实现同步加载，如nodejs。AMD规范应用于浏览器，如requirejs，为异步加载。
@@ -973,7 +907,7 @@ ES6的模块化分为导出（export）与导入（import）两个功能。如�
 2. 便于代码复用
 3. 模块化能按需加载
 
- ## 49、require和import的区别
+## 49、require和import的区别
 - 区别1：调用时机
 require：运行时加载，所以其实是可以放在任何地方的
 import：编译时加载（效率更高），所以必须放在文件的开头
@@ -1013,7 +947,7 @@ CommonJs模块和ES6模块的区别：
 2. ES6 的模块自动采用严格模式，不管你有没有在模块头部加上 “use strict”;
 3. CommonJS 模块输出的是一个值的拷贝，ES6 模块输出的是值的引用，
 
- ## exports和module.exports有什么区别？⭐⭐⭐
+## exports和module.exports有什么区别？⭐⭐⭐
 两者都是commonjs的导出方式
 - 导出方式不一样
   - exports.xxx='xxx'
@@ -1021,19 +955,14 @@ CommonJs模块和ES6模块的区别：
 - exports是module.exports的引用，两个指向的是用一个地址，而require能看到的只有module.exports
 
 
- ## 50、jquerydom互转的几种方式
- ```javascript
-const testDiv = document.getElementById('#test')
-$(testDiv)
-$('#testDiv').get(0)
- ```
- ## 4.浏览器的多进程和javaScript的单线程
+
+## 4.浏览器的多进程和javaScript的单线程
 - 一个进程是由一个或者多个线程组成的。打开一个tab页，其实就是创建了一个进程，一个进程可以有多个线程，比如JS引擎线程、GUI渲染线程、HTTP请求线程。
 - JS作为浏览器脚本语言，JS的主要用途是与用户互动，以及操作DOM。这决定了只能是单线程，假如JS有两个线程，一个线程在某个DOM节点上添加内容，另一个线程删除了这个节点，这时候浏览器就不知道应该以哪个为准。
 
 
 
- ## 51、js执行机制
+## 51、js执行机制
 一、事件循环（Event Loop）基础  
 ~~首先JS是单线程的，一般的代码都会按顺序执行，如果遇到异步代码，会将异步代码放到另一个线程，这个线程我们叫工作线程，主线程继续执行剩余的代码，当工作线程异步代码执行完成过后，比如setTimeout时间到了或者axios得到了数据，该线程就会将回调函数放到消息队列里面去，当主线程代码执行完过后，会检查任务队列是否有任务要执行，如果有，则会执行，如果没有，则会一直循环等待任务到来。~~
 
@@ -1073,14 +1002,13 @@ console.log(3)
  ```
 
 
- ## 54、事件捕获和事件冒泡哪个先触发
+## 54、事件捕获和事件冒泡哪个先触发
 DOM事件流（event flow ）存在三个阶段：事件捕获阶段、处于目标阶段、事件冒泡阶段。
  ```javascript
 document.getElementById(元素id).addEventListener("click", function(){
     console.log("目标元素被点击了");
 }, false);
-// addEventListener方法有三个参数，第三个参数默认值是false，表示在事件冒泡阶段调用事件处理函数;
-// 如果参数为true，则表示在事件捕获阶段调用处理函数。
+// 第三个参数表示监听器是否在捕获阶段执行，‌true=>事件在捕获阶段处理；‌false=>事件在冒泡阶段执行，‌默认false。
  ```
 
 1. 事件委托  
@@ -1091,16 +1019,30 @@ document.getElementById(元素id).addEventListener("click", function(){
 - 事件委托基于冒泡，对于不冒泡的事件不支持。
 - 层级过多，冒泡过程中，可能会被某层阻止掉。
 
- ## 57、async和await的原理和使用
+## addEventListener第三个参数是啥,还可以为其它值吗
+- 当参数为布尔值时，表示监听器是否在捕获阶段执行，‌true=>事件在捕获阶段处理；‌false=>事件在冒泡阶段执行，‌默认false。‌
+
+ 当参数为对象时，‌该对象可以包含三个属性：‌
+capture：‌布尔值，‌表示监听器是否在捕获阶段执行。‌
+once：‌布尔值，‌表示监听器是否仅执行一次。‌
+passive：‌布尔值，‌表示监听器是否不会调用preventDefault()。‌
+ ```javascript
+document.addEventListener('click', () => {
+    // do something
+    ...
+}, false)
+ ```
+
+## 57、async和await的原理和使用
 在异步代码的函数上加上async，在异步代码前加上await，这样会将异步代码变为同步，
 好处是解决promise.then回调地狱的问题。
 
- ## 58、Promise是什么？
+## 58、Promise是什么？
 1. promise是一个对象，内部有三个状态，resolved,rejected,pending。
 2. 当我们new一个promise对象的时候，会传入一个回调函数，这回调函数有resolve和reject两个方法。想改变状态只能调用resolve()或者reject()这两个方法，
 3. 通过.then方法来获取数据，then方法可以接受两个参数，一个成功的回调，一个失败的回调。但是我们获取数据一般是通过async/await来获取数据。这样可以避免回调地狱。
 
- ## 59、reduce方法
+## 59、reduce方法
 reduce() 方法接收一个函数作为累加器，数组中的每个值（从左到右）开始缩减，最终计算为一个值。
 reduce() 可以作为一个高阶函数
 array.reduce(function(prev, cur, index, arr), init)
@@ -1127,11 +1069,11 @@ arr.reduce((prev, cur) => {
 ```
 
 
- ## 60、高阶函数有哪些
+## 60、高阶函数有哪些
 高阶函数指 若a函数，接收一个函数为参数，那么a就可以称之为高阶函数  
 常见的高阶函数有：Promise、setTimeout、map、filter、reduce，sort等等
 
- ## 61、常用操作字符串方法
+## 61、常用操作字符串方法
 - split(sep，limit)：将字符串分割为字符数组，limit为从头开始执行分割的最大数量
 - slice(start,end)：返回字符索引在start和end（不含）之间的子串
 - substr(start，length)：从字符索引start的位置开始，返回长度为length的子串
@@ -1141,11 +1083,11 @@ arr.reduce((prev, cur) => {
 - lastIndexOf(str):返回str在父串中最后一次出现的位置，若没有则返回-1
 - indexOf(str):返回str在父串中第一次出现的位置，若没有则返回-1
 
- ## 62、常用操作数组方法
-- push()，向数组的末尾添加元素
-- pop()，删除数组中最后一个元素
-- unshift()，向数组开头添加元素
-- shift()，删除数组第一个元素
+## 62、常用操作数组方法
+- push()，向数组的末尾添加元素，得到数组长度
+- pop()，删除数组中最后一个元素，得到删除的元素
+- unshift()，向数组开头添加元素，得到数组长度
+- shift()，删除数组第一个元素，得到删除的元素
 - splice(index,howmany,item1....)：添加/删除数组元素，index规定位置，howmany为删除的数量，item1......可选向数组添加的新项目
 - sort()，对数组元素进行排序，并返回这个数组，sort的比较函数有两个参数，返回a-b则使升序，返回b-a则是降序
 - slice(start,end)：返回数组下标在start和end（不含）之间的值
@@ -1155,7 +1097,7 @@ arr.reduce((prev, cur) => {
 - filter（function） 过滤原始数组，返回新数组
 
 
- ## 为什么 0.1 + 0.2不等于0.3,如何解决这个问题
+## 为什么 0.1 + 0.2不等于0.3,如何解决这个问题
 因为js是用二进制处理数据，小数不同于整数，会出现小数部分永远不为0的情况，那存储是就会有数据丢失
 
 <img src="pic/WX20240715-154903@2x.png"  height="300" />
@@ -1167,7 +1109,7 @@ arr.reduce((prev, cur) => {
 
 4. 过程中有两次精度丢失，一次在存储，一次在相加。
 
- ## 如何解决
+## 如何解决
 先给他们放大倍数，随后在除以相应倍数
 ```javascript
 const a = 0.1;
@@ -1179,14 +1121,14 @@ console.log((a * 1000 + b * 1000) / 1000 === 0.3)  // true
 
 
 
- ## 那为什么0.2+0.3=0.5呢?
+## 那为什么0.2+0.3=0.5呢?
 0.2 和0.3分别转换为二进制进行计算：在内存中，它们的尾数位都是等于52位的，而他们相加必定大于52位，而他们相加又恰巧前52位尾数都是0，截取后恰好是0.1000000000000000000000000000000000000000000000000000也就是0.5
 
- ## 那既然0.1不是0.1了，为什么在console.log(0.1)的时候还是0.1呢?
+## 那既然0.1不是0.1了，为什么在console.log(0.1)的时候还是0.1呢?
 在console.log的时候会二进制转换为十进制，十进制再会转为字符串的形式，在转换的过程中发生了取近似值，所以打印出来的是一个近似值的字符串
 
 
- ## js的设计模式有哪些
+## js的设计模式有哪些
  有七种设计模式，
 常见的有： 1、工厂模式，2.单例模式 3.观察者模式 4.发布订阅模式
 不常见的：构造函数模式、迭代器模式、代理模式
@@ -1406,7 +1348,7 @@ subject.add(obs1);
 subject.add(obs2);
 ```
 
- ## 27.如何将类数组转换成数组？
+## 27.如何将类数组转换成数组？
  
 ```javascript
 // 方法一：Array.from
@@ -1419,21 +1361,9 @@ Array.prototype.concat.apply([], hdList);
 let list = [...hdList];
 ```
 
- ## addEventListener第三个参数是啥,还可以为其它值吗
- 当参数为布尔值时，表示监听器是否在捕获阶段执行，‌如果设置为true，‌事件在捕获阶段处理；‌如果设置为false（‌或省略不填）‌，‌事件在冒泡阶段处理。‌
 
- 当参数为对象时，‌该对象可以包含三个属性：‌
-capture：‌布尔值，‌表示监听器是否在捕获阶段执行。‌
-once：‌布尔值，‌表示监听器是否仅执行一次。‌
-passive：‌布尔值，‌表示监听器是否不会调用preventDefault()。‌
- ```javascript
-document.addEventListener('click', () => {
-    // do something
-    ...
-}, false)
- ```
 
- ## while循环，do while和while的区别
+## do while和while的区别
  do...while 循环能够保证至少执行一次循环，而 while 循环不一定
  
  ```javascript
@@ -1442,9 +1372,13 @@ while (n <= 5) {
   n++;
   console.log(n);
 }
+// 1 2 3 4 5 6
+```
 
+```js
 do {
   n++;
   console.log(n);
 } while (n <= 5);
+// 1 2 3 4 5 6
 ```

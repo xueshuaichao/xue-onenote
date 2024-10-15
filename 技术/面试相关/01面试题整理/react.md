@@ -1,5 +1,5 @@
 ​
- ## 1. react的生命周期：
+### 1. react的生命周期：
  ```
 componentWillMount
 componentDidMount
@@ -11,13 +11,13 @@ componentWillUnmount
  ```
 
 
- ## 2、Hooks有什么优势，解决了什么问题
+### 2、Hooks有什么优势，解决了什么问题
 在 class 组件中，同一个业务逻辑的代码分散在组件的不同生命周期函数中，而 Hooks 能够让针对同一个业务逻辑的代码聚合在一块，让代码更加容易理解和维护，也便于共享
 
- ## 常用的hooks
+### 常用的hooks
 >自变量
 ```
-useState：更新状态，usestate 的返回值为 状态数据和修改状态的方法；是异步的，也可以是同步的
+useState：更新状态，usestate 的返回值为状态数据和修改状态的方法；是异步的，也可以是同步的
 
 useContext：用于在函数组件中使用 Context，可以很方便地获取到全局共享的数据；
 
@@ -40,12 +40,42 @@ useLayoutEffect 比 useEffect 的时机更提前一些
 useImperativeHandle：一般会和 forwardRef,
 ```
 
+### react hooks 与class组件的区别在于什么
+1.hooks不用将所有逻辑放到一个生命周期内，避免代码臃肿，可读性更高。
+2.可以方便从组件中抽离状态逻辑，单独封装。
 
- ## purecomponent
+### useLayoutEffect和useEffect的区别
+执行时机：useEffect在所有DOM变更完成后执行，通常在浏览器的绘制过程中；而useLayoutEffect在DOM变更之前执行，这意味着它在浏览器绘制之前同步运行。
+性能：由于useLayoutEffect在绘制前执行，因此它可能会导致重排和重绘，影响性能。如果你的副作用不依赖于布局信息，通常建议使用useEffect。
+
+何时使用useLayoutEffect？
+  useLayoutEffect适用于需要直接读取DOM布局或同步修改DOM布局的场景。例如，当你需要基于容器的大小来计算样式或进行布局调整时，useLayoutEffect是合适的选择。
+```js
+function ResizeObserver() {
+  const ref = React.useRef(null);
+
+  useLayoutEffect(() => {
+    if (ref.current) {
+      const observer = new ResizeObserver(entries => {
+        console.log('Container size:', entries[0].contentRect);
+      });
+
+      observer.observe(ref.current);
+      return () => observer.disconnect();
+    }
+  }, []);
+
+  return <div ref={ref}>Resize me!</div>;
+}
+
+```
+
+
+### purecomponent
 PureComponent其实就是一个继承自Component的子类，会自动加载shouldComponentUpdate函数。当组件需要更新的时候，shouldComponentUpdate会对组件的props和state进行一次浅比较。如果props和state都没有发生变化，则不会更新
 
 
- ## react 组件间的通信
+### react 组件间的通信
 1. 父子组件：props + 回调函数，也可通过ref方式获取
 2. 爷孙组件：两层父子通信或者使用 Context.Provider和 Context.Consumer
 3. 任意组件通信：通过消息订阅-发布的一些库(pubSub)、也可通过集中式管理(Redux、Mobx)
@@ -58,12 +88,12 @@ PubSub.subscribe(‘delete’, function(data){ }); //订阅
 ```
 
 
- ## 5、key使用index会有什么问题
+### 5、key使用index会有什么问题
 key是这条数据唯一的标识，用来追踪列表中哪条元素进行变动了。如果key用index，如果数组某项数据删除，以前的数据和重新渲染后的数据没法建立关联关系. 这就失去了 key 值存在的意义，可能就会导致数据错乱。一般都会使用每条数据的id，因为id是唯一的
 
 
 
- ## 15、了解redux吗？
+### 15、了解redux吗？
 redux是公共管理状态的，主要有三个核心方法，action,reducer,store，工作流程就是view调用dispatch触发action，action可以写异步操作，然后分发dispatch，reducer会根据action分发的dispatch中的type和state来更新状态。当我们在组件中使用则需要使用connect将组件与store连接起来。
 
 1.我们先写一个createAction的函数
@@ -142,7 +172,7 @@ const {someNames, ...} = this.props.example; //取出数据名
 
 
 
- ## 28、vue框架和react框架的区别
+### 28、vue框架和react框架的区别
 - 相同点：
 1.都是数据驱动视图
 2.都用了虚拟dom和diff算法
@@ -176,12 +206,12 @@ vue什么功能都是内置的，react则是交给社区去做
 
 
 
- ## 既然你用了vue和react，那这两个对比下吧，哪个好
+### 既然你用了vue和react，那这两个对比下吧，哪个好
 
 diff算法原理 、 Vue、React区别_diff算法原理,vue,react区别_勒布朗-前端的博客-CSDN博客
 https://blog.csdn.net/weixin_51225684/article/details/128020753
 
- ## 29 什么是高阶组件   简称(HOC)
+### 29 什么是高阶组件   简称(HOC)
 - 高阶组件就是一个函数，接受一个组件作为参数返回一个新的组件
 const EnhancedComponent = higherOrderComponent(MyComponent);
 higherOrderComponent就是我们的高阶组件，在其中可以加入各种逻辑来增强我们的 MyComponent
@@ -229,7 +259,7 @@ class PageA extends React.Component {
 export default withAdminAuth(PageA);
 ```
 
- ## React父级获取子级的数据的方式
+### React父级获取子级的数据的方式
  1. 使用ref属性获取子组件实例，然后直接访问其状态或方法。
 ```javascript
 this.child.current.getData()
@@ -252,7 +282,7 @@ useImperativeHandle(props.onRef，()=>{
 
 
 
- ## react如何减少组件重渲染
+### react如何减少组件重渲染
 1. 使用 useCallback 和 useMemo 钩子（仅适用于函数组件）: 这些钩子可以帮助你记住回调函数或经常使用的值，以避免它们在每次渲染时都被创建。
 2. 使用 useRef 钩子来存储可变状态。
 3. React.PureComponent 或 React.memo（推荐使用函数组件的memo方式）: 这些组件自动实现浅比较，避免不必要的重渲染。
@@ -262,8 +292,8 @@ useImperativeHandle(props.onRef，()=>{
 
 以下是使用 React.memo 的例子：
 
- ## react fiber架构
- 在老的版本里，react的挂在和更新是利用深度优先遍历，一直执行到底，如果你的组件特别复杂，这个过程js耗时比较长，在极端情况下会花费几秒的时间，用户页面会卡顿，体验差
+### react fiber架构
+在老的版本里，react的挂在和更新是利用深度优先遍历，一直执行到底，如果你的组件特别复杂，这个过程js耗时比较长，在极端情况下会花费几秒的时间，用户页面会卡顿，体验差
  从16.8版本开始，引入fiber概念，中文翻译为细小，纤维，简单讲，fiber将之前的组件更新从一个大的任务拆分为很多细小的task，所有组件的更新任务从一个task变为多个task。
  这些任务可以打断，回滚。那task的拆分带来哪些变化？这里涉及到大名鼎鼎的requestIdlecallback。这个是浏览器新的api，可以获取浏览器的空闲时间，之前说过浏览器的主线程
  主要分为js和渲染，其他的暂时忽略。主线程每过16.6ms会把渲染任务拉过来执行一下，也就变成了页面中的每秒60帧，16.6ms里又包含了js的执行，之前说过时间循环虽然是个永不停歇的循环，但永不停歇的循环并不占用cpu资源，除非你的js在执行任务，在这16.6ms里减去渲染和js执行花费的时间，那就是空闲时间。接下来再看fiber为什么可以解决更新非常复杂时的卡顿问题，举个例子，用户在input输入一段内容，task本身有优先级定义，用户的输入是最高优先级，会优先执行这个task，这是第一点。第二点，因为我们用浏览器的空闲时间去

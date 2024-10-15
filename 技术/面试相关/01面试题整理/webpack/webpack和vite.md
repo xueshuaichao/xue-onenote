@@ -22,8 +22,8 @@ assets-retry-webpack-plugin
  ## 如何在webpack中做些优化
  Webpack优化可以分为三部分：优化构建速度、优化开发体验、优化输出质量三部分。主要看图，另外做写补充
 
-![alt text](image-2.png)
-![alt text](image-3.png)
+![alt text](assets/image-2.png)
+![alt text](assets/image-3.png)
 
  ### 优化构建速度
 
@@ -42,7 +42,7 @@ resolve: {
 ```
 
 1.可以用noparse，告诉webpack哪些文件是不需要解析的
-![alt text](image.png)
+![alt text](assets/image.png)
 
 2.避免重复去编译第三方库，因为一个项目中第三方库是非常多的，像echats，elementui，我们把他单独打包到一个文件中，不会随着我们业务改变而重新打包，这样就能提高构建速度
 
@@ -52,19 +52,19 @@ resolve: {
 
  ### 优化输出质量
 1.提取公共代码 commonsChunkPlugin
-![alt text](image-6.png)
+![alt text](assets/image-6.png)
 2.按需打包 webpackChunkName
-![alt text](image-7.png)
+![alt text](assets/image-7.png)
 
 为了正确的输出在 /* webpackChunkName: "show" */ 中配置的 ChunkName，还需要配置下 Webpack，配置如下：
-![alt text](image-8.png)
+![alt text](assets/image-8.png)
 
 3.分离CSS    
 安装插件：npm install extract-text-webpack-plugin --save
-![alt text](image-9.png)
+![alt text](assets/image-9.png)
 
 4.使用webpack.optimize.UglifyJsPlugin插件压缩混淆js代码
-![alt text](image-10.png)
+![alt text](assets/image-10.png)
 
 5.开启tree-shaking 删除没有使用的代码，默认mode = production ，生产环境默认开启tree-shaking功能。
 

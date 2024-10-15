@@ -1,41 +1,18 @@
 ​
-- [虚拟dom解决了哪些问题，存在什么问题](#虚拟dom解决了哪些问题存在什么问题)
-- [什么是虚拟dom](#什么是虚拟dom)
-- [什么是diff算法](#什么是diff算法)
-- [2. vue中的data为什么是函数形式](#2-vue中的data为什么是函数形式)
-- [3. vue2和vue3中的 v-if和v-for优先级问题](#3-vue2和vue3中的-v-if和v-for优先级问题)
-- [4、vue双向绑定的实现原理](#4vue双向绑定的实现原理)
-- [5、vue的生命周期](#5vue的生命周期)
-- [6、ajax请求放在哪个生命周期中？](#6ajax请求放在哪个生命周期中)
-- [7、v-if 和 v-show 区别](#7v-if-和-v-show-区别)
-- [8、$route和$router的区别](#8route和router的区别)
-- [9、vue几种常用的指令](#9vue几种常用的指令)
-- [10、vue常用的修饰符？](#10vue常用的修饰符)
-- [11、vue中 key 值的作用？](#11vue中-key-值的作用)
-- [12、什么是vue的计算属性？](#12什么是vue的计算属性)
-- [13、vue等单页面应用及其优缺点](#13vue等单页面应用及其优缺点)
-- [14、父子组件的加载顺序：](#14父子组件的加载顺序)
-- [15、{{}},v-text,v-html表达式是怎么用的，有什么区别，](#15v-textv-html表达式是怎么用的有什么区别)
-- [16、组件间的通信](#16组件间的通信)
-- [17、介绍Vuex](#17介绍vuex)
-- [19、vue-router原理](#19vue-router原理)
-- [21、MVVM是什么？](#21mvvm是什么)
-- [22、vue-router 有哪几种导航钩子?](#22vue-router-有哪几种导航钩子)
-- [23、vue中什么是递归组件？举个例子说明下？](#23vue中什么是递归组件举个例子说明下)
 
 >(回答问题记住wwh原则，是什么，为什么以及怎么用，一次回答全，不要让面试官一个个问)
 
- # 虚拟dom解决了哪些问题，存在什么问题
+### 虚拟dom解决了哪些问题，存在什么问题
 1. 解决了数据驱动视图可能会导致很多无效的更新，因此虚拟dom就诞生了，先通过diff算法看哪些部分更新了，从而做到最小变动
 2. 存在的问题就是消耗了性能。
 
 
 
- # 什么是虚拟dom 
+### 什么是虚拟dom 
 虚拟dom是表示真实dom的js对象，虚拟dom通过diff算法找出变化部分，从而实现最小更新
 
 
- # 什么是diff算法
+### 什么是diff算法
 - diff算法是找出新旧两个虚拟dom对象的差异，最小更新视图，
 - 具体流程
 1. 数据改变后，会触发双向绑定的setter更新，通知所有的订阅者，生成新旧两个dom树，diff算法是同级比较，
@@ -70,17 +47,17 @@ React 是从左向右遍历对比，Vue 是双端交叉对比。
 
 
 
- # 2. vue中的data为什么是函数形式
+### 2. vue中的data为什么是函数形式
 因为一个组件可能被多个地方引用，这就要求data数据都是相互隔离的，这就要求data不是一个单纯对象，而是一个函数返回值，每个组件实例可以维护一份被返回对象的独立拷贝
 
 
 
- # 3. vue2和vue3中的 v-if和v-for优先级问题
+### 3. vue2和vue3中的 v-if和v-for优先级问题
 - vue2中，v-for的优先级高于v-if
 - vue3中，v-if的优先级是高于v-for
 
 > ***永远不要把 v-if 和 v-for 同时用在同一个元素上***
-如果避免出现这种情况，则在外层嵌套template（页面渲染不生成dom节点），在这一层进行 v-if 判断，然后在内部进行 v-for 循环
+如何避免出现这种情况，在外层进行 v-if 判断，在内部进行 v-for 循环
 ```javascript
 <template v-if="isShow">
   <p v-for="item in items">
@@ -99,7 +76,7 @@ computed: {
 ```
 
 
- # 4、vue双向绑定的实现原理
+### 4、vue双向绑定的实现原理
 首先回答，是基于数据劫持和发布订阅者模式实现的
 通过Object.defineProperty()来劫持各个属性的setter，getter，在数据变动时发给订阅者，触发相应的监听回调，
 
@@ -131,7 +108,7 @@ computed: {
 
 
 
- # 5、vue的生命周期
+### 5、vue的生命周期
   ```
   Vue2--------------vue3
   beforeCreate  -> setup()
@@ -155,21 +132,21 @@ computed: {
   destroyed：组件卸载完成后执行
   ```
 
- # 6、ajax请求放在哪个生命周期中？
+### 6、ajax请求放在哪个生命周期中？
 在mounted中，此时DOM已经渲染出来，可以直接操作DOM节点。
 一般情况下都放到mounted中
 
- # 7、v-if 和 v-show 区别
+### 7、v-if 和 v-show 区别
 v-if按照条件是否渲染，v-show是display的block或none；
 
- # 8、$route和$router的区别
+### 8、$route和$router的区别
   - this.$route是当前激活的路由对象，通过他可以拿到当前路由的一些信息，比如path，query，meta等属性，
   - this.$router是vueRouter的一个实例，是全局路由对象，this.$router.push可实现路由跳转
 
- # 9、vue几种常用的指令
+### 9、vue几种常用的指令
 v-for 、 v-if 、v-bind、v-on、v-show、v-else
 
- # 10、vue常用的修饰符？
+### 10、vue常用的修饰符？
  ```
   .prevent: 提交事件不再重载页面；
   .stop: 阻止单击事件冒泡；
@@ -178,7 +155,7 @@ v-for 、 v-if 、v-bind、v-on、v-show、v-else
   ```
 
 
- # 11、vue中 key 值的作用？
+### 11、vue中 key 值的作用？
 1. key的作用主要是为了更高效的更新虚拟DOM。
 2. 在patch过程中，会执行updateChildren方法，通过key可以判断是不是同一个节点，如果没有加key会认为是相同的节点，哪怕它们实际上不是，会增加不必要而更新，如果加上key后，如果key相等，只需要移动就行。同样道理，key也不能用数组索引
 
@@ -186,13 +163,7 @@ v-for 、 v-if 、v-bind、v-on、v-show、v-else
 
 
 
-
- # 12、什么是vue的计算属性？
-1. 依赖于数据，数据更新，处理结果自动更新；
-2. 在template调用时，直接写计算属性名即可；
-3. 相较于methods，不管依赖的数据变不变，methods都会重新计算，但是依赖数据不变的时候computed从缓存中获取，不会重新计算。
-
- # 13、vue等单页面应用及其优缺点
+### 13、vue等单页面应用及其优缺点
   - 优点：通过尽可能简单的 API 实现响应的数据驱动视图。比较轻量高效
 
  - 缺点：
@@ -200,7 +171,7 @@ v-for 、 v-if 、v-bind、v-on、v-show、v-else
 第一次加载首页耗时相对长一些；
 不可以使用浏览器的导航按钮需要自行实现前进、后退。
 
- # 14、父子组件的加载顺序：
+### 14、父子组件的加载顺序：
   ```
   1、父子组件的加载顺序为
   父beforeCreated ->父created ->父beforeMounted ->子beforeCreated ->子created ->子beforeMounted ->子mounted -> 父mounted
@@ -211,7 +182,7 @@ v-for 、 v-if 、v-bind、v-on、v-show、v-else
   ```
 
 
- # 15、{{}},v-text,v-html表达式是怎么用的，有什么区别，
+### 15、{{}},v-text,v-html表达式是怎么用的，有什么区别，
  - v-html:在网站上动态渲染任意 HTML 是非常危险的，因为容易导致 XSS 攻击。只在可信内容上使用 v-html，永不用在用户提交的内容上。
  - v-text: 
  ```
@@ -222,7 +193,7 @@ v-text 指令会覆盖元素内默认的值。
  - {{ }}: 插值表达式, 前后可以添加其他的内容,专门用来解决v-text会覆盖默认文本内容的问题
 
 
- # 16、组件间的通信
+### 16、组件间的通信
  - 父子组件：props和$emits用于父子组件间传参
  - 兄弟组件：通过vuex或pinia状态管理，或者vue2中的event-bus
  - 深层组件：provide和inject用于深层次组件传参很方便
@@ -248,7 +219,7 @@ export default {
 > provide 和 inject 主要为高阶插件/组件库提供用例。并不推荐直接用于应用程序代码中。
 
 
- # 17、介绍Vuex
+### 17、介绍Vuex
 vuex能对vue项目进行状态管理，主要一般通过state，mutations，action这三个模块构造，一般在页面中通过mapState来读取数据，通过mapActions来操作action。面对复杂的应用我们还需要创建modules，将vuex的store对象拆分成模块来写。
 1. state是保存所有数据，
 2. mutations用来保存所有方法，用来改变state的数据，
@@ -256,7 +227,7 @@ vuex能对vue项目进行状态管理，主要一般通过state，mutations，ac
 一般在页面中通过mapState来读取数据，通过mapActions来操作action。面对复杂的应用我们还需要创建modules，将vuex的store对象拆分成模块来写。
 
 
- # 19、vue-router原理
+### 19、vue-router原理
 前端路由主要有两种模式，hash模式和history模式，
 - hash模式
 ```
@@ -274,10 +245,10 @@ hash模式会创建hashHistory对象,hashHistory对象有两个方法，push() �
 ```
 
 
- # 21、MVVM是什么？
+### 21、MVVM是什么？
 MVVM即Model-View-ViewModel的简写。Model指的是后端传递的数据。View指视图。视图模型(ViewModel)是mvvm模式的核心，它是连接view和model的桥梁。
 
- # 22、vue-router 有哪几种导航钩子?
+### 22、vue-router 有哪几种导航钩子?
 1. 全局导航钩子：router.beforeEach(to,from,next)作用：跳转前进行判断拦截
 2. 路由独享钩子可以在路由配置上直接定义 beforeEnter
 3. 组件内的导航钩子有三种：
@@ -288,6 +259,6 @@ beforeRouteLeave 在离开当前组件对应的路由前调用=
 ```
 
 
- # 23、vue中什么是递归组件？举个例子说明下？
+### 23、vue中什么是递归组件？举个例子说明下？
 当前注册一个vue组件定义 name 为 ‘node-tree’ ，在组件 template 内部调用 实现递归。
 组件自己调用自己，场景有用于生成树形结构菜单​
