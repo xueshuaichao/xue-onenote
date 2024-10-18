@@ -211,7 +211,7 @@ fn(); //时间跳跃
 fn.call(obj); //听风是风
 ```
 
-手写call，apply，bind
+> 手写call，apply，bind
 已整理
 
 
@@ -220,23 +220,8 @@ fn.call(obj); //听风是风
 
 防抖就是一个事件完成后n毫秒之后再执行回调，如果这n毫秒内又重复一次事件，就重新计算时间
 
-
-```javascript
-function dbbounce(fn,delay){
-    let timer = null
-    return function(){
-        if(timer){
-            clearTimeout(timer)
-        }
-        timer = setTimeout(fn,delay)
-    }
-}
-function showTop (){
-    var scrollTop = document.documentElement.scrollTop
-    console.log('滚动距离',scrollTop)
-}
-window.onscroll = dbbounce(showTop,3000)
-```
+> 手写防抖
+已整理
 
 
 
@@ -246,29 +231,9 @@ window.onscroll = dbbounce(showTop,3000)
 函数执行一次后，在某个时间段内暂时失效，过段时间再重新激活，
 
 使用闭包存储一个布尔类型的状态，每次执行该方法时，如果状态为false则不执行，如果状态为true，则会使状态先等于false，达到冷却的效果，再调用定时器，定时器完成过后，会将状态改为true。
-```javascript
-function throttle(fn, delay) {
-    let valid = true
-    return function () {
-        //类似于技能能却，执行完一次，有间隔时间，时间走完了，才能再执行
-        //滚动时，如果状态为false就不执行，如果状态为true，在间隔期间设置状态为false，然后在执行定时器，定时器执行完，将状态改为true
-        if (!valid) {
-            return false
-        }
-        valid = false
-        setTimeout(() => {
-            fn()
-            valid = true
-        }, delay)
-    }
-}
+> 手写节流
+已整理
 
-function showTop() {
-    var scrollTop = document.documentElement.scrollTop
-    console.log('滚动距离', scrollTop)
-}
-window.onscroll = throttle(showTop, 2000)
-```
 
 ## 11、说说箭头函数与普通函数的区别？
 其实最主要就亮点：
@@ -808,60 +773,9 @@ console.log(arr);//[2, 4, 5, 12, 31, 32, 45, 52, 78, 89]
 2. 使用 lodash 的 cloneDeep 方法
 3. 自定义递归深拷贝函数
 
+> 手写浅拷贝深拷贝⭐⭐⭐⭐⭐
+已整理
 
-
-## 手写浅拷贝深拷贝⭐⭐⭐⭐⭐
-```javascript
-    var obj1 = {
-      a: {
-        a1: { a2: 1 },
-        a10: { a11: 123, a111: { a1111: 123123 } }
-      },
-      b: 123,
-      c: "123"
-    }
-
-    function isObject(o) {
-      return Object.prototype.toString.call(o) === "[object Object]" || Object.prototype.toString.call(o) === "[object Array]"
-    }
-
-    // 继续升级，没有考虑到数组，以及ES6中的map、set、weakset、weakmap
-    function deepClone3(o) {
-      if (isObject(o)) {//检测是否为对象或者数组
-        let obj = Array.isArray(o) ? [] : {}
-        for (let i in o) {
-          if (isObject(o[i])) {
-            obj[i] = deepClone(o[i])
-          } else {
-            obj[i] = o[i]
-          }
-        }
-        return obj
-      } else {
-        return o
-      }
-    }
-
-
-    // 有可能碰到循环引用问题  var a = {}; a.a = a; clone(a);//会造成一个死循环
-    // 循环检测
-    // 继续升级
-    function deepClone4(o, hash = new map()) {
-      if (!isObject(o)) return o//检测是否为对象或者数组
-      if (hash.has(o)) return hash.get(o)
-      let obj = Array.isArray(o) ? [] : {}
-
-      hash.set(o, obj)
-      for (let i in o) {
-        if (isObject(o[i])) {
-          obj[i] = deepClone4(o[i], hash)
-        } else {
-          obj[i] = o[i]
-        }
-      }
-      return obj
-    }
-```
 
 
 
@@ -1088,13 +1002,19 @@ arr.reduce((prev, cur) => {
 - pop()，删除数组中最后一个元素，得到删除的元素
 - unshift()，向数组开头添加元素，得到数组长度
 - shift()，删除数组第一个元素，得到删除的元素
-- splice(index,howmany,item1....)：添加/删除数组元素，index规定位置，howmany为删除的数量，item1......可选向数组添加的新项目
+
 - sort()，对数组元素进行排序，并返回这个数组，sort的比较函数有两个参数，返回a-b则使升序，返回b-a则是降序
-- slice(start,end)：返回数组下标在start和end（不含）之间的值
+- slice(start,end)：返回数组下标在start和end（不含）之间的值，不改变原数组
+- splice(开始索引,长度)：从开始的位置截取数组元素.截取指定长度的个数,返回的是截取后的新的数组
 - indexOf() 查找数组是否存在某个元素，返回下标
 - lastIndexOf() 查找指定元素在数组中的最后一个位置
 - includes() 查找数组是否包含某个元素 返回布尔
 - filter（function） 过滤原始数组，返回新数组
+- every(函数)方法,判断数组中的每个元素是否符合函数中的判断,如果每个元素都满足条件则返回true,否则返回false
+- some 有一个返回true，循环终止，返回true。
+- map(函数),让数组中的每个元素都执行一次函数,把得到的返回值组成一个新的数组
+- join(字符串);把数组中的每个元素之间用指定的字符串进行连接.返回一个新的字符串
+- find() 查找目标元素，找到就返回该元素，找不到返回undefined。
 
 
 ## 为什么 0.1 + 0.2不等于0.3,如何解决这个问题

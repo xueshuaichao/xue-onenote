@@ -1,4 +1,17 @@
 ​
+### 你都做过webpack哪些配置
+- 优化构建速度
+1.通过alias配置路径别名，方便查找
+2.通过includes，exclude 指定文件搜索范围
+3.通过noparse告诉webpack不必解析某些非模块化库文件  
+- 优化开发体验
+热更新
+- 优化输出质量  
+1.通过webpackchunkname设置按需加载  
+2.配置一些场景的plugin，比如commonsChunkPlugin提取公共代码，通过UglifyJsPlugin对js压缩
+3.通过external将第三方文件通过cdn加载
+4.开启treeshaking，删除无用代码
+
  ## 1、webpack中plugin和laoder的区别，它们的执行时机，以及常用的plugin和loader
 
 - webpack只能解析js文件，如果想打包其他文件的话，就会用到loader，比如打包图片、css模块、js模块时
@@ -28,9 +41,9 @@ assets-retry-webpack-plugin
  ### 优化构建速度
 
 2.通过include缩小文件搜索范围
-<img src="image-4.png"  height="200" />  
+<img src="assets/image-4.png"  height="200" />  
 3.优化 resolve.modules 配置，指明存放第三方模块的绝对路径，以减少寻找，
-<img src="image-5.png"  height="100" />  
+<img src="assets/image-5.png"  height="100" />  
 
 ```javascript
 resolve: {
@@ -47,7 +60,7 @@ resolve: {
 2.避免重复去编译第三方库，因为一个项目中第三方库是非常多的，像echats，elementui，我们把他单独打包到一个文件中，不会随着我们业务改变而重新打包，这样就能提高构建速度
 
 3.在webpack压缩打包时，如果有多个js需要压缩，可以开启多个子进程，比如用thread-loader来开启多个子进程  
-<img src="image-1.png"  height="200" />
+<img src="assets/image-1.png"  height="200" />
 
 
  ### 优化输出质量

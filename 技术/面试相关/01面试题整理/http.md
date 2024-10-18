@@ -198,20 +198,9 @@ HTTP的请求报文包括：请求行(request line)、请求头部(header)、空
 - 空行(CR+LF)：请求报文用空行表示header和请求数据的分隔
 - 请求数据：GET方法没有携带数据， POST方法会携带一个body
  
-原生http请求的写法：
-```javascript
-// 创建请求实例对象
-var myAjax = new XMLHttpRequest();
-// 设置请求的url参数，这是做准备工作
-myAjax.open('get', 'https://autumnfish.cn/search?keywords="嘉宾"');
-// 发送请求
-myAjax.send(null);
-myAjax.onreadystatechange = function () {
-  if (myAjax.readyState === 4 && myAjax.status === 200) {
-    console.log(myAjax.responseText);
-  }
-}
-```
+> 手写原生http请求的写法：
+已整理
+
 
 ### 21.如何取消请求的发送
 根据发送网络请求的api不同，取消方法不同
