@@ -1,6 +1,6 @@
 ​
 ### 1. react的生命周期：
- ```
+```
 componentWillMount
 componentDidMount
 componentWillReceiveProps
@@ -8,11 +8,12 @@ shouldComponentUpdate
 componentWillupdate
 componentDidupdate
 componentWillUnmount
- ```
+```
 
+### react hooks 与class组件的区别在于什么，Hooks有什么优势，解决了什么问题
+1.hooks不用将所有逻辑放到一个生命周期内，避免代码臃肿，可读性更高。
+2.可以方便从组件中抽离状态逻辑，单独封装。
 
-### 2、Hooks有什么优势，解决了什么问题
-在 class 组件中，同一个业务逻辑的代码分散在组件的不同生命周期函数中，而 Hooks 能够让针对同一个业务逻辑的代码聚合在一块，让代码更加容易理解和维护，也便于共享
 
 ### 常用的hooks
 >自变量
@@ -39,10 +40,6 @@ useLayoutEffect 比 useEffect 的时机更提前一些
 
 useImperativeHandle：一般会和 forwardRef,
 ```
-
-### react hooks 与class组件的区别在于什么
-1.hooks不用将所有逻辑放到一个生命周期内，避免代码臃肿，可读性更高。
-2.可以方便从组件中抽离状态逻辑，单独封装。
 
 ### useLayoutEffect和useEffect的区别
 执行时机：useEffect在所有DOM变更完成后执行，通常在浏览器的绘制过程中；而useLayoutEffect在DOM变更之前执行，这意味着它在浏览器绘制之前同步运行。
@@ -106,8 +103,7 @@ export function setAnalysisParams(params) {
 }
 
 
-
-1.在reducer里面：
+2.在reducer里面：
 export default function reducer(state = initialState, action = {}) {
   switch (action.type) {
     case SET_ANALYSIS_PARAMS:
@@ -119,29 +115,22 @@ export default function reducer(state = initialState, action = {}) {
       return state;
   }
 ```
-
-
-
-
 当action触发reducer时，会把action的result传给reducer的params。写好这里，我们就可以在组件中传给adction params了。
+
+
+3.先把actionCreator拿出来。
+在组件的某个需要的地方，可以直接向它传我们要放进redux里的数据：
 ```javascript
+this.props.setAnalysisParams({
+  someModels
+});
+
 @connect(
   () => ({
   }),
   {
     setAnalysisParams
   })
-```
-
-
-
-
-先把actionCreator拿出来。
-在组件的某个需要的地方，可以直接向它传我们要放进redux里的数据：
-```javascript
-this.props.setAnalysisParams({
-  someModels
-});
 ```
 
 这时，我们就可以在另外一个组件中取到刚刚放进去的数据。
@@ -172,6 +161,7 @@ const {someNames, ...} = this.props.example; //取出数据名
 
 
 
+
 ### 28、vue框架和react框架的区别
 - 相同点：
 1.都是数据驱动视图
@@ -179,43 +169,31 @@ const {someNames, ...} = this.props.example; //取出数据名
 3.都提倡组件化
 
 - 不同点：
+1.react的数据流向比较清晰
+react主张函数式编程，单向数据流，数据流向比较清晰，当然需要双向的地方也可以手动实现，比如借助 onChange 和 setState 来实现一个双向的数据流。
+vue是双向数据绑定，通过v-model实现数据和视图的同步更新，就可能比较乱，比如在pinia中，可以直接通过赋值修改pinia中的值。这就不太好
 
-1、Vue实现了数据的双向绑定，通过v-model实现数据和视图的同步更新
-而React是单向数据流，需要通过setState手动触发更新，当然react也可以实现双向绑定，通过onchange和setstate就可以
 
-冷知识：相比于vue是双向绑定，他更倾向于是响应式的，所谓响应式就是只要给变量赋值就可以，this.name = 'abc'
-而react则不是，他要通过setState才能触发
+2.性能优化
+vue中的每个组件内部自动实现了,不需要手动优化
+vue会跟踪每一个组件的依赖关系(比如静态标记)，更快地计算出Virtual DOM的差异，不需要重新渲染整个组件树。
+而对于React而言,每当应用的状态被改变时,全部组件都会重新渲染,所以react需要shouldComponentUpdate手动去优化其性能。
 
-2、模板渲染方式的不同
+但是当数据特别多的时候vue中的watcher也会特别多，从而造成页面卡顿，所以一般数据比较多的大型项目会倾向于使用react。在react官网中，官方也建议我们使用React来构建快速响应的大型 Web 应用程序。
+
+3.方便性
+但现在vue升级到3后，增加了很多小东西，比如状态的赋值要不要加value就很繁琐。不够优雅。比如现在我想看数据的变化必须要写个watcher。
+
+4、模板渲染方式的不同
 react使用jsx语法，把html和css全都写进js中，vue使用html模板，就是在html中写css和js，最后再用webpack和vue-loader进行打包，这种编码方式对于初学者而言是很舒服的
 
-3、渲染过程不同
-Vue会跟踪每一个组件的依赖关系，可以更快地计算出Virtual DOM的差异，不需要重新渲染整个组件树。
-React在应用的状态被改变时，全部子组件都会重新渲染。通过shouldComponentUpdate这个生命周期方法可以进行控制，但Vue将此视为默认的优化。
-
-4、React中通过setState方法更新状态，而Vue中只需要通过this的某种方式去更新state中的数据，这种方式更加方便
-5、React严格上只针对MVC的view层，Vue是MVVM模式
-
-vue什么功能都是内置的，react则是交给社区去做
 
 
-
-
-为什么大公司更喜欢用react，因为大公司给的钱多，找的程序员也更高级
-因为vue相当于自动挡，react 手动挡，vue的下限更高点，react的上限更高点
-
-
-
-### 既然你用了vue和react，那这两个对比下吧，哪个好
-
-diff算法原理 、 Vue、React区别_diff算法原理,vue,react区别_勒布朗-前端的博客-CSDN博客
-https://blog.csdn.net/weixin_51225684/article/details/128020753
-
-### 29 什么是高阶组件   简称(HOC)
+### 29 什么是高阶组件，以及举例说一个你封装过的高阶组件   简称(HOC)
 - 高阶组件就是一个函数，接受一个组件作为参数返回一个新的组件
 const EnhancedComponent = higherOrderComponent(MyComponent);
 higherOrderComponent就是我们的高阶组件，在其中可以加入各种逻辑来增强我们的 MyComponent
-高阶组件(HOC)主要作用是代码复用
+
 - 高阶组件的应用场景
 ```javascript
 权限控制: 利用高阶组件的 条件渲染 特性可以对页面进行权限控制
@@ -259,6 +237,48 @@ class PageA extends React.Component {
 export default withAdminAuth(PageA);
 ```
 
+
+### 使用React Hooks实现自定义Hooks
+要使用React Hooks来实现自定义Hooks，首先需要创建一个函数，该函数的名称通常以"use"开头，例如"useCustomHook"。在函数中，可以使用React提供的Hooks（例如useState、useEffect等）来管理状态和副作用。
+
+以下是一个简单的示例，演示了如何创建一个自定义Hooks来管理计数器的状态：
+```js
+import React, { useState } from 'react';
+
+const useCounter = (initialCount) => {
+  const [count, setCount] = useState(initialCount);
+
+  const increment = () => {
+    setCount(count + 1);
+  };
+
+  const decrement = () => {
+    setCount(count - 1);
+  };
+
+  return [count, increment, decrement];
+};
+
+export default useCounter;
+```
+
+```js
+const Counter = () => {
+  const [count, increment, decrement] = useCounter(0);
+
+  return (
+    <div>
+      <h1>Count: {count}</h1>
+      <button onClick={increment}>Increment</button>
+      <button onClick={decrement}>Decrement</button>
+    </div>
+  );
+};
+
+export default Counter;
+```
+
+
 ### React父级获取子级的数据的方式
  1. 使用ref属性获取子组件实例，然后直接访问其状态或方法。
 ```javascript
@@ -288,7 +308,6 @@ useImperativeHandle(props.onRef，()=>{
 3. React.PureComponent 或 React.memo（推荐使用函数组件的memo方式）: 这些组件自动实现浅比较，避免不必要的重渲染。
 4. 给列表增加key值
 5. 将频繁触发的状态抽离出来，单独封装，比如音量变化组件
-6. 使用 shouldComponentUpdate 生命周期方法（仅适用于类组件）: 这个方法允许你控制组件是否应该重渲染。
 
 以下是使用 React.memo 的例子：
 

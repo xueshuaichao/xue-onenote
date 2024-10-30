@@ -5,7 +5,67 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
   </head>
+  <style>
+    .container {
+      height: 100px;
+      width: 100%;
+      color: blue !important;
+    }
+    /* 
+    @media (min-width: 0px) and (max-width: 750px) {
+      .container {
+        background: blue;
+      }
+    }
+    @media (min-width: 750px) {
+      .container {
+        background: red;
+      }
+    }
+    @media (min-width: 900px) {
+      .container {
+        background: yellow;
+      }
+    } */
+  </style>
   <body>
-    <script></script>
+    <div class="container" style="color: red">333</div>
   </body>
+  <script>
+    // const fn = () => {
+
+    // }
+    window.a = 100;
+
+    class P {
+      a = 10;
+      fn1() {
+        console.log("this1", this, this);
+      }
+      fn2() {
+        console.log("this1", this, this);
+      }
+
+      // fn2 = () => {
+      //   console.log("this2", this.a);
+      // };
+    }
+
+    const p = new P();
+
+    p.fn1();
+    p.fn2();
+
+    const { fn1, fn2 } = p;
+    fn1();
+    fn2();
+    console.log(p, P.constructor);
+    console.log(p.__proto__ === P);
+    console.log(P);
+
+    function P1() {}
+
+    const p1 = new P1();
+    console.log(p1.__proto__ === P1.prototype);
+  </script>
 </html>

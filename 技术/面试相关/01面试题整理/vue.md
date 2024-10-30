@@ -76,7 +76,7 @@ computed: {
 ```
 
 
-### 4、vue双向绑定的实现原理
+### 4、vue双向绑定响应式的实现原理
 首先回答，是基于数据劫持和发布订阅者模式实现的
 通过Object.defineProperty()来劫持各个属性的setter，getter，在数据变动时发给订阅者，触发相应的监听回调，
 
@@ -132,10 +132,6 @@ computed: {
   destroyed：组件卸载完成后执行
   ```
 
-### 6、ajax请求放在哪个生命周期中？
-在mounted中，此时DOM已经渲染出来，可以直接操作DOM节点。
-一般情况下都放到mounted中
-
 ### 7、v-if 和 v-show 区别
 v-if按照条件是否渲染，v-show是display的block或none；
 
@@ -147,16 +143,15 @@ v-if按照条件是否渲染，v-show是display的block或none；
 v-for 、 v-if 、v-bind、v-on、v-show、v-else
 
 ### 10、vue常用的修饰符？
- ```
-  .prevent: 提交事件不再重载页面；
-  .stop: 阻止单击事件冒泡；
-  .self: 当事件发生在该元素本身而不是子元素的时候会触发；
-  .capture: 事件侦听，事件发生的时候会调用
-  ```
+.prevent: 提交事件不再重载页面；
+.stop: 阻止单击事件冒泡；
+.self: 当事件发生在该元素本身而不是子元素的时候会触发；
+.capture: 事件侦听，事件发生的时候会调用
+
 
 
 ### 11、vue中 key 值的作用？
-1. key的作用主要是为了更高效的更新虚拟DOM。
+1. key是为了更高效的更新虚拟DOM。
 2. 在patch过程中，会执行updateChildren方法，通过key可以判断是不是同一个节点，如果没有加key会认为是相同的节点，哪怕它们实际上不是，会增加不必要而更新，如果加上key后，如果key相等，只需要移动就行。同样道理，key也不能用数组索引
 
 3. vue中在使用相同标签元素过渡切换时，也会使用key属性，其目的也是为了让vue可以区分它们，否则vue只会替换其内部属性而不会触发过渡效果。
@@ -164,7 +159,7 @@ v-for 、 v-if 、v-bind、v-on、v-show、v-else
 
 
 ### 13、vue等单页面应用及其优缺点
-  - 优点：通过尽可能简单的 API 实现响应的数据驱动视图。比较轻量高效
+- 优点：通过尽可能简单的 API 实现响应的数据驱动视图。比较轻量高效
 
  - 缺点：
 不利于SEO的优化（如果要支持SEO，建议通过服务端来进行渲染组件）；
@@ -222,27 +217,30 @@ export default {
 ### 17、介绍Vuex
 vuex能对vue项目进行状态管理，主要一般通过state，mutations，action这三个模块构造，一般在页面中通过mapState来读取数据，通过mapActions来操作action。面对复杂的应用我们还需要创建modules，将vuex的store对象拆分成模块来写。
 1. state是保存所有数据，
-2. mutations用来保存所有方法，用来改变state的数据，
+2. mutations保存用来改变state的方法，
 3. action一般暴露给用户使用，可执行异步操作，用来触发mutations的方法，用来改变数据。
 一般在页面中通过mapState来读取数据，通过mapActions来操作action。面对复杂的应用我们还需要创建modules，将vuex的store对象拆分成模块来写。
 
+### vuex持久化的问题
+1.利用本地存储
+localStorage或者sessionStroage
+
+2.利用插件vuex-persistedstate
 
 ### 19、vue-router原理
 前端路由主要有两种模式，hash模式和history模式，
 - hash模式
-```
+
 hash会在域名后面加一个#号，hash虽然会出现在url中，但不会包括在http请求中
 通过监听hashChange事件来知道路由发生变化，从而进一步去更新我们的页面
 hash模式会创建hashHistory对象,hashHistory对象有两个方法，push() 和 replace()
-```
 
 - history模式
-```
-而history没有#号，这种模式需要服务端支持。服务端接收到请求后，都指向同一个html文件。
+
+而history没有#号，这种模式需要服务端支持。服务端接收到请求后，都指向同一个html文件，否则容易出现页面404的情况。
 通过监听 popstate事件来监听路由改变，从而更新页面
 通过history.pushState()或者history.replaceState() 改变地址，但不会向服务器去发送请求
-需要和服务器配合使用，否则容易出现页面404的情况
-```
+
 
 
 ### 21、MVVM是什么？

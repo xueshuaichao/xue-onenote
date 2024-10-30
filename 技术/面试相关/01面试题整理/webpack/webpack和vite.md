@@ -2,14 +2,16 @@
 ### 你都做过webpack哪些配置
 - 优化构建速度
 1.通过alias配置路径别名，方便查找
-2.通过includes，exclude 指定文件搜索范围
+2.在test中通过includes，exclude 指定文件搜索范围
 3.通过noparse告诉webpack不必解析某些非模块化库文件  
+4.如果有多个js需要压缩，可以开启多个子进程，比如用thread-loader来开启多个子进程
+
 - 优化开发体验
 热更新
-- 优化输出质量  
-1.通过webpackchunkname设置按需加载  
-2.配置一些场景的plugin，比如commonsChunkPlugin提取公共代码，通过UglifyJsPlugin对js压缩
-3.通过external将第三方文件通过cdn加载
+- 优化输出质量
+1.通过external将第三方文件通过cdn加载
+2.通过webpackchunkname设置按需加载  
+3.配置一些场景的plugin，比如commonsChunkPlugin提取公共代码，通过UglifyJsPlugin对js压缩
 4.开启treeshaking，删除无用代码
 
  ## 1、webpack中plugin和laoder的区别，它们的执行时机，以及常用的plugin和loader

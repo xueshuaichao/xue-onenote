@@ -121,3 +121,18 @@ interface ChildInterface extends ParentInterface {
   optionalProperty?: any; // 重写 optionalProperty 属性  
 }  
 ```
+
+通过Omit 踢出一个元素
+```js
+interface Test {
+    a: string;
+    b: number;
+    c: boolean;
+}
+
+// Omit a single property:
+type OmitA = Omit<Test, "a">; // Equivalent to: {b: number, c: boolean}
+
+// Or, to omit multiple properties:
+type OmitAB = Omit<Test, "a"|"b">; // Equivalent to: {c: boolean}
+```

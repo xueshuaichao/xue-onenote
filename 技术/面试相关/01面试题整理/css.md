@@ -330,4 +330,7 @@ window.onresize = function () {
 }
 ```
 
+
+### 移动端界面布局适配方案
+
  
