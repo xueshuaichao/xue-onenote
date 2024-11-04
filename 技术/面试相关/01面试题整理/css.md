@@ -210,7 +210,7 @@ flex-shrink：定义了项目的缩小比例，默认为 1，即如果空间不�
 
 解决办法：给浮动元素添加一个父元素并设置overflow:hidden;属性
 
-- 如何画一条 0.5px 的边框
+### 如何画一条 0.5px 的边框，如何解决1像素的问题
 0.5px的问题是各浏览器设备的像素比不同，导致的1px失真
 
 发现目前的实现方案都离不开以下三种
@@ -233,22 +233,6 @@ flex-shrink：定义了项目的缩小比例，默认为 1，即如果空间不�
     border: 1px solid gray;
     transform: scale(0.5); 
     transform-origin: 0 0;
-
-
-
-}
-
-// 通过伪元素实现 0.5px 细线
-.line::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 200%;
-    height: 1px;
-    background: #b3b4b8;
-    transform: scale(0.5);
-    transform-origin: 0 0;
 }
 
 // dpr适配可以这样写
@@ -256,8 +240,8 @@ flex-shrink：定义了项目的缩小比例，默认为 1，即如果空间不�
     .line::after {
     	...
      	height: 1px;
-        transform: scale(0.5);
-        transform-origin: 0 0;
+      transform: scale(0.5);
+      transform-origin: 0 0;
     }
 }
 
@@ -265,14 +249,13 @@ flex-shrink：定义了项目的缩小比例，默认为 1，即如果空间不�
     .line::after {
         ...
      	height: 1px;
-        transform: scale(0.333);
-        transform-origin: 0 0;
+      transform: scale(0.333);
+      transform-origin: 0 0;
     }
 }
 ```
-为什么要先放大 200% 再缩小 0.5？
-
-为了只缩放 border 1px 的粗细，而保证 border 的大小不变。如果直接 scale(0.5) 的话 border 整体大小也会变成二分之一，所以先放大 200%（放大的时候 border 的粗细是不会被放大的）再缩放，就能保持原大小不变了。
+> 为什么要先放大 200% 再缩小 0.5？
+如果直接 scale(0.5) 的话 border 整体大小也会变成二分之一，所以先放大 200%（放大的时候 border 的粗细是不会被放大的）再缩放，就能保持原大小不变了。
 
 为什么采用缩放的方式，就可以解决手机对小数点处理的兼容性问题？
 
@@ -281,9 +264,10 @@ flex-shrink：定义了项目的缩小比例，默认为 1，即如果空间不�
 
 
 
-2. 使用 动态 viewport + rem 布局 的方式（即 Flexible 实现方案）
+1. 使用 动态 viewport + rem 布局 的方式（即 Flexible 实现方案）
 initial-scale 设置为0.5
-3. 新方案：使用 vw 单位适配方案（将来推荐的一种方案，但目前项目中没有实际应用，故本文不做讨论）
+
+1. 新方案：使用 vw 单位适配方案（将来推荐的一种方案，但目前项目中没有实际应用，故本文不做讨论）
 
 ### 移动端是用什么单位写的，他是怎么转成rem的。
 我们一般用px来写，一般给的是375px的设计稿，通过postcss-pxtorem，将px转为rem，再在跟组件写入方法，动态监听当前屏幕的宽度，

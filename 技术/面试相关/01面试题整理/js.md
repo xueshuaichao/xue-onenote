@@ -261,107 +261,8 @@ let func=()=>{
 不可以使用yield命令，因此箭头函数不能当作Generator函数。~~
 
 
-## 13、javascript实现继承的几种方法？
-什么是继承：子类具有父类的属性和方法。
-实现方式有原型链继承、构造函数继承、组合继承、寄生式继承、寄生组合式继承
-
-详见专题中的几种继承方法
-
-1. 原型继承（把父类的实例作为子类的原型）
-- 缺点：
-  1. 父类的引用数据类型（对象，数组）会被子类共享，会相互影响
-  2. 子类实例不能给父类构造函数传参（因为父类只new一次，子类可生成多个，不能个性化处理）
-```javascript
-function Person() {
-  this.name = "小明";
-  this.eats = ["苹果"];
-  this.getName = function () {
-    console.log(this.name);
-  };
-}
-Person.prototype.get = () => {
-  console.log("person.prototype上的方法");
-};
-
-function Student() {}
-Student.prototype = new Person();
-const stu1 = new Student();
-stu1.name = "小花";
-stu1.eats.push("香蕉");
-console.log(stu1.name);
-console.log(stu1.eats);
-stu1.getName();
-stu1.get();
-
-console.log("--------------");
-
-const stu2 = new Student();
-console.log(stu2.name);
-console.log(stu2.eats);
-stu2.getName();
-stu2.get();
-```
-
-1. 构造函数继承
-- 优点：父类的引用类型数据不会被子类共享，不会相互影响
-- 缺点：子类不能访问父类的原型属性(Person.prototype)
-```javascript
-function Person() {
-  this.name = "小明";
-  this.eats = ["苹果"];
-  this.getName = function () {
-    console.log(this.name);
-  };
-}
-
-Person.prototype.get = () => {
-  console.log("person.prototype上的方法");
-};
-function Student() {
-  Person.call(this);
-}
-// Student.prototype = new Person();
-// 没有这行代码，下边的组合继承才有
-const stu1 = new Student();
-stu1.name = "小花";
-stu1.eats.push("香蕉");
-console.log(stu1.name);
-console.log(stu1.eats);
-stu1.getName();
-// stu1.get();
-console.log("--------------------");
-
-const stu2 = new Student();
-console.log(stu2.name);
-console.log(stu2.eats);
-stu2.getName();
-// stu2.get();
-```
-
-
-1. 组合继承
-// 在子函数中运行父函数，但是要利用call把this改变一下，
-// 再在子函数的prototype里面new Father() ,使Father的原型中的方法也得到继承，最后改变Son的原型中的constructor
-
-- 优点：
-  1. 父类可以复用
-  2. 父类构造函数中的引用数据不会被共享
-- 缺点：会调用两次父类的构造函数，会有两份一样的属性和方法，影响性能
-
-1. 寄生组合继承
-目前最优的继承方案
-
-1. es6 class类继承extends  
-（寄生组合继承的语法糖），子类只要继承父类，可以不写 constructor，一旦写了，则在 constructor 中的第一句话，必须是 super。
-```javascript
-class Son3 extends Father { // Son.prototype.__proto__ = Father.prototype
-  constructor(y) {
-    super(200)  // super(200) => Father.call(this,200)
-    this.y = y
-  }
-}
-```
-完美
+## 13、实现继承的几种方法？
+已整理，ID：1730351883844
 
 ## 14、对原生javascript的了解程度？
 数据类信、运算、对象、Function、继承、闭包、作用域、原型链、事件、RegExp、JSON、Ajax、DOM、BOM、内存泄露、跨域、异步装载、模板引擎、前端MVC、路由、模块化、Canvas、ECMAScript。
@@ -776,8 +677,25 @@ console.log(arr);//[2, 4, 5, 12, 31, 32, 45, 52, 78, 89]
 > 手写浅拷贝深拷贝⭐⭐⭐⭐⭐
 已整理
 
+## Object.assign
+Object.assign() 方法用于将所有可枚举属性的值从一个或多个源对象复制到目标对象。它将返回目标对象。
+如果单层数据，属于深拷贝，如果多层，属于浅拷贝
 
+```js
+Object.assign(target,...sources)
+// target—>目标对象
+// source—>源对象
+// 返回值：target，即目标对象
+```
 
+```js
+var target = { name: "张三", age: 18 };
+var source = { money: "10000" };
+var result = Object.assign(target, source);
+console.log(result);
+console.log(target);
+console.log(source);
+```
 
 
 ## 46、es6新增了哪些方法
@@ -1302,3 +1220,72 @@ do {
 } while (n <= 5);
 // 1 2 3 4 5 6
 ```
+
+
+### Promise.all / Promise.race / Promise.allSettled / Promise.any 的区别
+id: 1730275598158
+- Promise.all
+Promise.all()方法用于将多个 Promise 实例，包装成一个新的 Promise 实例。
+```js
+const p = Promise.all([p1, p2, p3]);
+```
+p的状态由p1,p2,p3 决定，分成两种情况。
+（1）只有p1、p2、p3的状态都变成fulfilled，p的状态才会变成fulfilled，此时p1、p2、p3的返回值组成一个数组，传递给p的回调函数。
+（2）只要p1、p2、p3之中有一个被rejected，p的状态就变成rejected，此时第一个被reject的实例的返回值，会传递给p的回调函数。
+```js
+let p1 = new Promise((resolve, reject) => {
+    setTimeout(() => {
+        resolve("p1--all---执行了")
+    }, 1000);
+}).then((res) => {
+    console.log(res);
+})
+let p2 = new Promise((resolve, reject) => {
+    setTimeout(() => {
+        resolve("p2--all---执行了")
+    }, 1000);
+}).then((res) => {
+    console.log(res);
+})
+let p3 = new Promise((resolve, reject) => {
+    setTimeout(() => {
+        //resolve("p3--all---执行了")
+        reject()
+    }, 1000);
+}).then((res) => {
+    console.log(res);
+})
+Promise.all([p1, p2, p3]).then((res) => {
+    console.log("%cPromise.all执行成功了", "color: green;font-size:22px", res)
+})
+.catch((error) => {
+console.log("%cPromise.all执行失败了", "color: red;font-size:22px",error)
+})
+```
+
+2.Promise.race
+只要p1、p2、p3之中有一个实例率先改变状态，p的状态就跟着改变。那个率先改变的 Promise 实例的返回值，就传递给p的回调函数。
+
+
+3.Promise.allSettled
+Promise.allSettled() 方法返回一个在所有给定的 promise 都已经 fulfilled 或 rejected 后的 promise ，并带有一个对象数组，每个对象表示对应的 promise 结果。也就是失败和成功的都返回
+
+4.Promise.any
+只要参数实例有一个变成fulfilled状态，包装实例就会变成fulfilled状态；如果所有参数实例都变成rejected状态，包装实例就会变成rejected状态。 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

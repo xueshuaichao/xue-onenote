@@ -14,7 +14,7 @@
 3.配置一些场景的plugin，比如commonsChunkPlugin提取公共代码，通过UglifyJsPlugin对js压缩
 4.开启treeshaking，删除无用代码
 
- ## 1、webpack中plugin和laoder的区别，它们的执行时机，以及常用的plugin和loader
+## 1、webpack中plugin和laoder的区别，它们的执行时机，以及常用的plugin和loader
 
 - webpack只能解析js文件，如果想打包其他文件的话，就会用到loader，比如打包图片、css模块、js模块时
 比如：  
@@ -34,13 +34,31 @@ assets-retry-webpack-plugin
 ```
 
 
- ## 如何在webpack中做些优化
- Webpack优化可以分为三部分：优化构建速度、优化开发体验、优化输出质量三部分。主要看图，另外做写补充
+## 如何在webpack中做些优化
+> 怎么记
+范围相关的
+includes,excludes
+alias
+noparse
+
+打包优化
+通过external将第三方文件通过cdn加载
+提取公共组件 commonsChunkPlugin
+按需加载 webpackchunkname
+
+插件相关的
+vconsole-webpack-plugin
+UglifyJsPlugin
+mini-css-extract-plugin
+
+
+
+Webpack优化可以分为三部分：优化构建速度、优化开发体验、优化输出质量三部分。主要看图，另外做写补充
 
 ![alt text](assets/image-2.png)
 ![alt text](assets/image-3.png)
 
- ### 优化构建速度
+### 优化构建速度
 
 2.通过include缩小文件搜索范围
 <img src="assets/image-4.png"  height="200" />  
@@ -65,14 +83,11 @@ resolve: {
 <img src="assets/image-1.png"  height="200" />
 
 
- ### 优化输出质量
+### 优化输出质量
 1.提取公共代码 commonsChunkPlugin
 ![alt text](assets/image-6.png)
 2.按需打包 webpackChunkName
 ![alt text](assets/image-7.png)
-
-为了正确的输出在 /* webpackChunkName: "show" */ 中配置的 ChunkName，还需要配置下 Webpack，配置如下：
-![alt text](assets/image-8.png)
 
 3.分离CSS    
 安装插件：npm install extract-text-webpack-plugin --save
@@ -83,24 +98,13 @@ resolve: {
 
 5.开启tree-shaking 删除没有使用的代码，默认mode = production ，生产环境默认开启tree-shaking功能。
 
-6、按需加载
-```javascript
-routes: [
-    {
-      path: "/about",
-      name: "about",
-      component: () => import(/* webpackChunkName: "about" */ "./views/About.vue")
-    }
-  ]
-```
-
 
 5、babel编译原理？
 badylon将ES6/ES7转换成 AST;
 babel-traverse对AST进行遍历转译，得到新的AST;
 新AST通过babel-generator转换成ES5。
 
- ## webpack和vite的区别
+## webpack和vite的区别
 构建速度
 Webpack: Webpack的构建速度相对较慢，尤其在大型项目中，因为它需要分析整个依赖图，进行多次文件扫描和转译。
 Vite: Vite以开发模式下的极速构建著称。它利用ES模块的特性，只构建正在编辑的文件，而不是整个项目。这使得它在开发环境下几乎是即时的。
@@ -125,9 +129,10 @@ Vite: Vite的打包原理是保持开发时的模块化结构，使用浏览器�
 
 
 
- ## AST（抽象语法树）的概念及其在前端开发中的应用场景
- 概念：代码通过编译器转换成一颗树型结构，标识程序的语法结构，相比于源码本身，ast更加容易处理和分析，在前端开发中，可以利用ast实现jsx代码转换
- 由于浏览器不能识别jsx，需要先将jsx转换为ast，我们可以方便的遍历整个ast，并修改添加和删除节点。然后再重新生成js代码
+## AST（抽象语法树）的概念及其在前端开发中的应用场景
+概念：代码通过编译器转换成一颗树型结构，标识程序的语法结构，相比于源码本身，ast更加容易处理和分析，在前端开发中，可以利用ast实现jsx代码转换
+
+由于浏览器不能识别jsx，需要先将jsx转换为ast，我们可以方便的遍历整个ast，并修改添加和删除节点。然后再重新生成js代码
 
  在进行性能优化时，使用ast优化插件做静态检查和打包压缩等操作。
 

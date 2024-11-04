@@ -16,30 +16,20 @@ componentWillUnmount
 
 
 ### 常用的hooks
->自变量
-```
+- 自变量
 useState：更新状态，usestate 的返回值为状态数据和修改状态的方法；是异步的，也可以是同步的
-
 useContext：用于在函数组件中使用 Context，可以很方便地获取到全局共享的数据；
-
 useReducer：类似于 Redux 的 reducer，可以用于管理复杂的状态逻辑，可以传入初始状态和一个 reducer 函数，返回当前状态和 dispatch 方法；
-```
 
-> 因变量  
-```
+- 因变量  
 useEffect：模拟一些生命周期，处理一些状态的副作用，请求接口；
-
 useMemo：返回一个缓存值，当依赖项没有发生变化时，可以避免重复计算；
-
 useCallback：缓存一个函数，避免在每次渲染时创建新的回调函数，从而提升性能；
-```
-```
+
 useRef：用于在函数组件中获取对 DOM 元素或组件实例的引用，也可以用来存储任意可变值。
-
 useLayoutEffect 比 useEffect 的时机更提前一些
-
 useImperativeHandle：一般会和 forwardRef,
-```
+
 
 ### useLayoutEffect和useEffect的区别
 执行时机：useEffect在所有DOM变更完成后执行，通常在浏览器的绘制过程中；而useLayoutEffect在DOM变更之前执行，这意味着它在浏览器绘制之前同步运行。
@@ -162,7 +152,7 @@ const {someNames, ...} = this.props.example; //取出数据名
 
 
 
-### 28、vue框架和react框架的区别
+### 28、vue框架和react框架的区别(ID:1730438241631)
 - 相同点：
 1.都是数据驱动视图
 2.都用了虚拟dom和diff算法
