@@ -692,9 +692,9 @@ Object.assign(target,...sources)
 var target = { name: "张三", age: 18 };
 var source = { money: "10000" };
 var result = Object.assign(target, source);
-console.log(result);
-console.log(target);
-console.log(source);
+console.log(result); // {name: '张三', age: 18, money: '10000'}
+console.log(target); // {name: '张三', age: 18, money: '10000'}
+console.log(source); // {money: '10000'}
 ```
 
 

@@ -32,11 +32,11 @@
     <div class="container" style="color: red">333</div>
   </body>
   <script>
-    class P {
-      constructor() {
-        this.a = "a";
-      }
-    }
-    console.log(P.prototype.constructor === P);
+    var target = { name: "张三", age: 18 };
+var source = { age: 19 };
+var result = Object.assign(target, source);
+console.log(result);
+console.log(target);
+console.log(source);
   </script>
 </html>
