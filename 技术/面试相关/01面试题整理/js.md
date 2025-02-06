@@ -413,6 +413,9 @@ let arr = [1, 2, 3, 2, 1, 1]
 var m = new Map([[1, 'Michael'], [2, 'Bob'], [3, 'Tracy']]); 
 m.get(1); // 'Michael'
 
+// 此处扩展字符不能去掉
+const keysArray = [...map.keys()]; // [1, 2, 3]
+const valuesArray = [...map.values()]; // ['Michael', 'Bob', 'Tracy']
 
 
 const m = new Map()
@@ -422,6 +425,13 @@ m.get(o)  // content
 m.has(o)  // true
 m.delete(o) // true
 m.has(o)  // false
+
+// 判断 Map 是否有值
+if (map.size === 0) {
+  console.log('Map 为空');
+} else {
+  console.log('Map 有值');
+}
 ```
 
 ```
