@@ -16,6 +16,9 @@ const map = new Map();
 map.set('one', 1)
 map.set('two', 2);
 Array.from(map); // => [['one', 1], ['two', 2]]
+
+// 清空
+map.clear();
 ```
 
 ```javascript
