@@ -15,17 +15,17 @@
 
 实际的依赖存储路径可以通过命令pnpm store path或者查看.modules.yaml文件。 也可以通过pnpm store来修改你需要存储
 依赖的目录地址
-![alt text](image-7.png)
+![alt text](assets/image-7.png)
 
 执行pnpm install，因为之前装过对应的模块，直接从磁盘里面获取
-![alt text](image-8.png)
+![alt text](assets/image-8.png)
 
 
 pnpm 通过软连接和硬链接解决了上述问题
-![alt text](image-9.png)
+![alt text](assets/image-9.png)
 
 有了npm和yarn，为什么还要用pnpm呢，这与npm的安装方式有关
-![alt text](image-10.png)
+![alt text](assets/image-10.png)
 
 在npm2是嵌套安装，这有两个问题
 1.依赖树太深，导致目录路径过长
@@ -35,4 +35,4 @@ pnpm 通过软连接和硬链接解决了上述问题
 但也有两个问题
 1.幽灵依赖，指某个包没有在package.json中被依赖，用户却能引用到
 2.即便扁平化后，也会有多次安装的问题
-![alt text](image-11.png)
+![alt text](assets/image-11.png)

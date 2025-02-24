@@ -8,7 +8,7 @@ flex-wrap: wrap;
 justify-content: space-between;
 ```
 
-![alt text](image-2.png)
+![alt text](assets/image-2.png)
 
 
 
@@ -34,20 +34,20 @@ grid-template-columns: repeat(5, 1fr);
 gap: 30px;  
 ```
 
-![alt text](image-3.png)
+![alt text](assets/image-3.png)
 
 
  ### 深入了解一下grid-template-columns属性
 grid-template-columns: 1fr;（独占一行）
 grid-template-columns: 1fr 1fr;（一行分为两列）
 grid-template-columns: 1fr 200px 1fr;（中间固定200px，两边自动平均分配）
-![alt text](image-4.png)
+![alt text](assets/image-4.png)
 
 
 
  ### grid-template-columns: repeat(auto-fill, minmax(255px, 1fr)); 
 这种写法可以用来做响应式布局，auto-fill主轴上指定的宽度或者重复次数是最大可能的正整数，minmax最小值255px、最大值1fr代表剩余空间的比例。
-![alt text](image-5.png)
+![alt text](assets/image-5.png)
 
 注意：实现这种响应式布局，一定要注意父容器不能使用固定宽度，可以将父容器改为如：80%，这样就能根据屏幕的宽度，自动展示一行展示几个了。
 
@@ -59,7 +59,7 @@ grid-template-columns: 1fr 200px 1fr;（中间固定200px，两边自动平均�
 }
 ```
 以grid-row行为例，从第几列开始 / 第几列+想占几个；
-![alt text](image-6.png)
+![alt text](assets/image-6.png)
 
 
  ### 上下左右居中对齐
