@@ -12,11 +12,11 @@ Vue3引入了新的编译器，采用了基于Proxy的响应式系统，这使�
 -----
 vue2中的虚拟dom是全量对比（不管是动态还是静态的，浪费时间在静态节点的对比上）
 vue3只会对比带有patch flag的节点。可通过flag信息得知当前节点要对比的具体内容
-![alt text](image-12.png)
-![alt text](image-13.png)
+![alt text](assets/image-12.png)
+![alt text](assets/image-13.png)
 
    
-![alt text](image-14.png)
+![alt text](assets/image-14.png)
 
  编译模板时，动态节点做标记
     使用位运算来检查更新
@@ -26,7 +26,7 @@ vue3只会对比带有patch flag的节点。可通过flag信息得知当前节�
 静态提升
 vue2.0无论元素是否参与更新，每次都会重新创建，然后再渲染
 vue3.0对于不参与更新的元素，会做静态提升，只会被新创建一次，在渲染时直接复用即可
-![alt text](image-15.png)
+![alt text](assets/image-15.png)
 
  ## 四、事件侦听器缓存
 默认情况下，onClick会被视为动态绑定，所以每次都会去追踪它的变化。但是因为事件绑定的函数是同一个函数（同一个方法），所以没有追踪变化，直接缓存起来复用即可。
@@ -70,7 +70,7 @@ SSR（服务端渲染）可以将同一个组件渲染为服务器端的 HTML �
 
 简单点说：就是将页面在服务端渲染完成后在客户端直接显示。无需等待所有的 JavaScript 都完成下载并执行，才显示服务器渲染的标记，所以你的用户将会更快速地看到完整渲染的页面。
 ssr原理图
-![alt text](image-16.png)
+![alt text](assets/image-16.png)
 
 
 六、tree-shaking
