@@ -188,12 +188,41 @@ v-text 指令会覆盖元素内默认的值。
  - {{ }}: 插值表达式, 前后可以添加其他的内容,专门用来解决v-text会覆盖默认文本内容的问题
 
 
-### 16、组件间的通信
- - 父子组件：props和$emits用于父子组件间传参
- - 兄弟组件：通过vuex或pinia状态管理，或者vue2中的event-bus
- - 深层组件：provide和inject用于深层次组件传参很方便
+### 16、组件间的通信 （id: 1741326457481）
+简单父子通信 → Props + $emits
+兄弟组件通信 → 事件总线（event-bus）（Vue 2）或 mitt（Vue 3）
+跨层级通信 → Provide/Inject 或 Vuex
+复杂应用状态 → Vuex（Vue 2）或 Pinia（Vue 3）
 
+
+- 事件总线（Event Bus）示例
+用途：通过全局事件中心传递消息（适用于任意组件）。
+```js
+// 创建事件总线（Vue 2）
+const bus = new Vue();
+
+// 组件 A：发送事件
+bus.$emit('event-name', data);
+
+// 组件 B：接收事件
+bus.$on('event-name', data => { ... });
 ```
+
+- Vue3 的 mitt 库（替代事件总线）
+用途：轻量级事件订阅/发布库（Vue 3 推荐）。
+```js
+import mitt from 'mitt';
+const emitter = mitt();
+
+// 发送事件
+emitter.emit('event', data);
+
+// 监听事件
+emitter.on('event', data => { ... });
+```
+
+
+```js
 // 祖先组件app.vue
 export default {
     name: 'app',

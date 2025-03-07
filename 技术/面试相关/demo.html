@@ -8,19 +8,83 @@
   <body>
     <button onclick="closure()">Closure</button>
     <script type="text/javascript">
-      var funcs = [];
-      function outer() {
-        var someText = new Array(1000_0000);
-        return function inner() {
-          return someText;
-        };
-      }
-      function closure() {
-        funcs.push(outer());
-      }
-    //   setInterval(function timer() {
-    //     return "hello";
-    //   }, 2000);
+      const list = [
+  {
+    id: 1,
+    name: "1 第一章",
+    parentId: 0,
+  },
+  {
+    id: 2,
+    name: "1.1 第一节",
+    parentId: 1,
+  },
+  {
+    id: 3,
+    name: "1.2 第二节",
+    parentId: 1,
+  },
+  {
+    id: 4,
+    name: "2 第二章",
+    parentId: 0,
+  },
+  {
+    id: 5,
+    name: "2.1 第一节",
+    parentId: 4,
+  },
+  {
+    id: 6,
+    name: "2.2 第二节",
+    parentId: 4,
+  },
+];
+
+function foo(arr) {
+    const map = {}
+    arr.forEach((item) => {
+        map[item.id] = item
+    })
+    let result = []
+    arr.forEach((item) => {
+        const parent =  map[item.parentId]
+        if (parent) {
+            if (!parent.children) {
+                parent.children = []
+            }
+            parent.children.push(item)
+        } else {
+            result.push(item)
+        }
+    })
+    return result
+}
+console.log(foo(list))
+
+// function generateTree(arr) {
+//   let map = {};
+//   // 先将所有项赋值到map上，方便后边用
+//   arr.forEach((item) => {
+//     map[item.id] = item;
+//   });
+//   let result = [];
+//   arr.forEach((item) => {
+//     let parent = map[item.parentId];
+//     // 找到每一项的parent是否存在，如果不存在则他自己就是顶级parent，如果存在则将它自己push到找到的parent中
+    
+//     if (parent) {
+//       if (!parent.children) {
+//         parent.children = [];
+//       }
+//       parent.children.push(item);
+//     } else {
+//       result.push(item);
+//     }
+//   });
+//   return result;
+// }
+// console.log(generateTree(list));
     </script>
   </body>
 </html>
