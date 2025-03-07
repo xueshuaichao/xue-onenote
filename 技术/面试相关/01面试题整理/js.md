@@ -262,7 +262,7 @@ let func=()=>{
 
 
 ## 13、实现继承的几种方法？
-已整理，ID：1730351883844
+已整理，ID： 1730351883844
 
 ## 14、对原生javascript的了解程度？
 数据类信、运算、对象、Function、继承、闭包、作用域、原型链、事件、RegExp、JSON、Ajax、DOM、BOM、内存泄露、跨域、异步装载、模板引擎、前端MVC、路由、模块化、Canvas、ECMAScript。

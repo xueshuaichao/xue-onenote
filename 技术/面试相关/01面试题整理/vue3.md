@@ -10,7 +10,7 @@ https://blog.csdn.net/qq_62401119/article/details/137500862
 ### 1. Vue 3相比Vue 2有哪些主要改进？有哪些新增特性
 
  - api层面Vue3新特性主要包括:
- 1. Composition API、Teleport传送门、Fragments 片段、Suspense、Emits选项、自定义渲染器、SFC CSS变量、SFC Composition API语法糖、
+ 1. Composition API、Teleport传送门、Fragments 片段、Suspense、Emits选项、自定义渲染器、SFC CSS变量
   ```
     1.使用了Composition API，提高了代码逻辑的可复用性。面对vue2的局限性，可以将相同的代码组织在一起，而不会散落在各个角落
     2.Teleport组件允许将子组件渲染到DOM中的任何位置。
@@ -29,7 +29,7 @@ https://blog.csdn.net/qq_62401119/article/details/137500862
 
 
 
-### 1. Vue3 Composition API是什么？它的作用是什么？
+### 1. Vue3 Composition API(组合式api)是什么？它的作用是什么？
 Composition API 是一组基于函数的 API，它允许你以可复用的方式组织组件逻辑。它主要包括 ref、reactive、computed、watch、setup 等函数和钩子。
 
 ### 2. setup()函数在Vue 3中起什么作用？
@@ -51,8 +51,8 @@ emit:分发自定义事件的函数，相当于this.$emit
 3、如果返回值是一个对象，那么这个对象中的键值对会被合并到created钩子的this中，而在视图上也能访问相应的数据值
 
 ### 4. 请解释ref和reactive的区别？
-- ref 用于创建简单的响应式引用，通常用于基本数据类型。
-- reactive 用于创建响应式对象，通常用于复杂数据类型如数组和对象。
+- ref 通常用于基本数据类型，创建简单的响应式引用
+- reactive 通常用于复杂数据类型如数组和对象。用于创建响应式对象，
   
 ——————————————————————
 
