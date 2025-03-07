@@ -64,9 +64,21 @@ height: 100px;
 - em是一种相对长度单位，它基于父元素的字体大小而定，em的值表示当前元素的字体大小的倍数。
 - rem是相对于根节点的字体大小而定
 
-### 3、什么是CSS Hack?
-一般来说是针对不同的浏览器写不同的CSS,就是 CSS Hack。
-IE浏览器Hack一般又分为三种，条件Hack、属性级Hack、选择符Hack
+
+### css的兼容性怎么设置  id: 1741320703237
+1. 使用浏览器前缀：
+对于一些新特性，可能需要添加浏览器前缀以确保兼容性。例如：
+```css
+.example {
+    -webkit-border-radius: 10px; /* Safari and Chrome */
+    -moz-border-radius: 10px;    /* Firefox */
+    border-radius: 10px;         /* Standard */
+}
+```
+
+2. CSS Hack
+有时我们需要针对不同的浏览器或不同版本写特定的CSS样式，叫做CSS hack!
+CSS hack的写法大致归纳为3种:条件hack、属性级hack、选择级hack。
 ```css
 // 1、条件Hack
 <!--[if IE]>
@@ -86,6 +98,23 @@ _color:#ff0;  /* For IE6 and earlier */
 * html .test{color:#090;}       /* For IE6 and earlier */
 * + html .test{color:#ff0;}     /* For IE7 */
 ```
+
+3. 自动化插件
+
+Autoprefxer是一款自动管理测览器前缀的插件，它可以解析CSS文件并且添加浏览器前缀到CSS内容里，使用CanlUse(caniuse网站)的数据来决定哪些前缀是需要的。
+
+把Autoprefxer添加到资源构建工具(例如Grunt)后，可以完全忘记有关CSS前缀的东西，只需按照最新的W3C规范来正常书写CSS即可。如果项目需要支持旧版浏览器，可修改browsers参数设置。
+```json
+// 在你的配置文件中添加：
+{
+    "browserslist": [
+        "last 2 versions",
+        "> 1%",
+        "IE 10"
+    ]
+}
+```
+
 
 
 

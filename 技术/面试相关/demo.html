@@ -1,75 +1,90 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Media Switcher</title>
-    <link rel="stylesheet" href="https://unpkg.com/photoswipe@5/dist/photoswipe.css">
-    <style>
-        .media-container {
-            position: relative;
-            width: 600px;
-            height: 400px;
-            overflow: hidden;
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button onclick="closure()">Closure</button>
+    <script type="text/javascript">
+      const list = [
+  {
+    id: 1,
+    name: "1 第一章",
+    parentId: 0,
+  },
+  {
+    id: 2,
+    name: "1.1 第一节",
+    parentId: 1,
+  },
+  {
+    id: 3,
+    name: "1.2 第二节",
+    parentId: 1,
+  },
+  {
+    id: 4,
+    name: "2 第二章",
+    parentId: 0,
+  },
+  {
+    id: 5,
+    name: "2.1 第一节",
+    parentId: 4,
+  },
+  {
+    id: 6,
+    name: "2.2 第二节",
+    parentId: 4,
+  },
+];
+
+function foo(arr) {
+    const map = {}
+    arr.forEach((item) => {
+        map[item.id] = item
+    })
+    let result = []
+    arr.forEach((item) => {
+        const parent =  map[item.parentId]
+        if (parent) {
+            if (!parent.children) {
+                parent.children = []
+            }
+            parent.children.push(item)
+        } else {
+            result.push(item)
         }
-        .media-container img, .media-container video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        .controls {
-            margin-top: 10px;
-        }
-    </style>
-</head>
-<body>
-    <div class="media-container" id="mediaContainer">
-        <a href="image.jpg" data-pswp-width="1600" data-pswp-height="900">
-            <img id="mediaImage" src="image.jpg" alt="Media" style="display: none;">
-        </a>
-        <video id="mediaVideo" controls style="display: none;">
-            <source src="video.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
-    </div>
-    <div class="controls">
-        <button onclick="showImage()">Show Image</button>
-        <button onclick="showVideo()">Show Video</button>
-    </div>
+    })
+    return result
+}
+console.log(foo(list))
 
-    <!-- PhotoSwipe core JS file -->
-    <script src="https://unpkg.com/photoswipe@5/dist/photoswipe.umd.min.js"></script>
-    <script src="https://unpkg.com/photoswipe@5/dist/photoswipe-lightbox.umd.min.js"></script>
-    <script>
-        const mediaContainer = document.getElementById('mediaContainer');
-        const mediaImage = document.getElementById('mediaImage');
-        const mediaVideo = document.getElementById('mediaVideo');
-
-        function showImage() {
-            mediaImage.style.display = 'block';
-            mediaVideo.style.display = 'none';
-        }
-
-        function showVideo() {
-            mediaImage.style.display = 'none';
-            mediaVideo.style.display = 'block';
-        }
-
-        // 初始化 PhotoSwipe
-        const lightbox = new PhotoSwipeLightbox({
-            gallery: '#mediaContainer',
-            children: 'a',
-            pswpModule: PhotoSwipe
-        });
-        lightbox.init();
-
-        // 添加点击事件以打开 PhotoSwipe
-        mediaImage.addEventListener('click', () => {
-            lightbox.loadAndOpen(0);
-        });
-
-        // 初始化显示图片
-        showImage();
+// function generateTree(arr) {
+//   let map = {};
+//   // 先将所有项赋值到map上，方便后边用
+//   arr.forEach((item) => {
+//     map[item.id] = item;
+//   });
+//   let result = [];
+//   arr.forEach((item) => {
+//     let parent = map[item.parentId];
+//     // 找到每一项的parent是否存在，如果不存在则他自己就是顶级parent，如果存在则将它自己push到找到的parent中
+    
+//     if (parent) {
+//       if (!parent.children) {
+//         parent.children = [];
+//       }
+//       parent.children.push(item);
+//     } else {
+//       result.push(item);
+//     }
+//   });
+//   return result;
+// }
+// console.log(generateTree(list));
     </script>
-</body>
+  </body>
 </html>
