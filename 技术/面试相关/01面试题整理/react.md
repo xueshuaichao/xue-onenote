@@ -32,6 +32,47 @@ useImperativeHandle：一般会和 forwardRef,
 
 
 ### useLayoutEffect和useEffect的区别
+1. 执行时机
+useEffect	在组件渲染完成后（DOM 更新 + 浏览器绘制屏幕后）异步执行副作用。
+useLayoutEffect	在组件渲染完成后（DOM 更新后，但浏览器绘制屏幕前）同步执行副作用。
+2. 对用户的影响
+useEffect：
+副作用代码不会阻塞浏览器绘制，用户可能先看到未经副作用处理的 UI，然后看到更新后的 UI（例如闪烁、布局跳跃）。
+useLayoutEffect：
+副作用代码会阻塞浏览器绘制，确保在用户看到最终 UI 前完成所有 DOM 操作，避免视觉不一致。
+
+- 使用 useEffect（可能导致闪烁）
+```js
+function Component() {
+  const [width, setWidth] = useState(0);
+  const ref = useRef();
+
+  useEffect(() => {
+    // 在绘制后执行，用户可能先看到 width=0，再看到调整后的值
+    setWidth(ref.current.offsetWidth);
+  }, []);
+
+  return <div ref={ref}>{width}</div>;
+}
+```
+- 使用 useLayoutEffect（避免闪烁）
+```js
+function Component() {
+  const [width, setWidth] = useState(0);
+  const ref = useRef();
+
+  useLayoutEffect(() => {
+    // 在绘制前同步执行，直接更新 width
+    setWidth(ref.current.offsetWidth);
+  }, []);
+
+  return <div ref={ref}>{width}</div>;
+}
+```
+
+
+
+
 执行时机：useEffect在所有DOM变更完成后执行，通常在浏览器的绘制过程中；而useLayoutEffect在DOM变更之前执行，这意味着它在浏览器绘制之前同步运行。
 性能：由于useLayoutEffect在绘制前执行，因此它可能会导致重排和重绘，影响性能。如果你的副作用不依赖于布局信息，通常建议使用useEffect。
 
