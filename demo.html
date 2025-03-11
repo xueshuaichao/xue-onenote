@@ -1,47 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
-<body>
-    <!-- <div>
-        <button class="btn" onclick="createInput(false)">按钮1</button>
-        <button class="btn" onclick="createInput(true)">按钮2</button>
-    </div> -->
-    <button class="btn" onclick="createInputs()">依次创建10个聚焦的文本枢
-    </button>
-</body>
-
-
-<script>
-    let inp = null
-    function createInput(){
-        return new Promise((resolve, reject) => {
-            setTimeout(() => {
-                console.log('这里出发')
-                inp = document.createElement("input");
-                document.body.appendChild(inp);
-                inp.focus();
-                resolve()
-            }, 100)
-        })
-    }
-    function delay(duration = 1000) {
-        return new Promise((resolve, reject) => {
-            setTimeout(() => {
-                inp.remove();
-                resolve()
-            }, 100)
-        })
-    }
-    async function createInputs(){
-        for(let i = 0; i< 10; i++){
-            await createInput();
-            await delay(100);
+  </head>
+  <body>
+    <div class="box"></div>
+    <script>
+      const observer = new ResizeObserver((entries) => {
+        for (const entry of entries) {
+          // entry 包含目标元素尺寸变化的详细信息
+          console.log("元素尺寸变化:", entry.target, entry.contentRect);
         }
-    }
-
-</script>
+      });
+      const targetElement = document.querySelector(".box");
+      observer.observe(targetElement); // 开始监听
+    </script>
+    <style>
+      .box {
+        /* width: 800px; */
+        height: 200px;
+        border: 1px solid red;
+      }
+    </style>
+  </body>
 </html>

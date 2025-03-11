@@ -71,34 +71,6 @@ function Component() {
 ```
 
 
-
-
-执行时机：useEffect在所有DOM变更完成后执行，通常在浏览器的绘制过程中；而useLayoutEffect在DOM变更之前执行，这意味着它在浏览器绘制之前同步运行。
-性能：由于useLayoutEffect在绘制前执行，因此它可能会导致重排和重绘，影响性能。如果你的副作用不依赖于布局信息，通常建议使用useEffect。
-
-何时使用useLayoutEffect？
-  useLayoutEffect适用于需要直接读取DOM布局或同步修改DOM布局的场景。例如，当你需要基于容器的大小来计算样式或进行布局调整时，useLayoutEffect是合适的选择。
-```js
-function ResizeObserver() {
-  const ref = React.useRef(null);
-
-  useLayoutEffect(() => {
-    if (ref.current) {
-      const observer = new ResizeObserver(entries => {
-        console.log('Container size:', entries[0].contentRect);
-      });
-
-      observer.observe(ref.current);
-      return () => observer.disconnect();
-    }
-  }, []);
-
-  return <div ref={ref}>Resize me!</div>;
-}
-
-```
-
-
 ### purecomponent
 PureComponent其实就是一个继承自Component的子类，会自动加载shouldComponentUpdate函数。当组件需要更新的时候，shouldComponentUpdate会对组件的props和state进行一次浅比较。如果props和state都没有发生变化，则不会更新
 
