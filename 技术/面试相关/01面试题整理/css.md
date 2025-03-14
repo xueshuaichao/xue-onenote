@@ -1,5 +1,5 @@
 ​
-### 1.CSS实现垂直水平居中
+### 1.CSS实现垂直水平居中(id: 1741914657544)
  1. flex布局
 ```css
 #dv1{
@@ -190,17 +190,17 @@ flex-shrink：定义了项目的缩小比例，默认为 1，即如果空间不�
 
 ### 10、BFC是什么 （bfc的全称是Block Format Content，直译为块级格式化上下文）？
 - 概念
-它是一个独立的渲染区域，也就是说，触发bfc的元素会形成一个独立的渲染区域，这个区域里面的元素不会影响外部元素的渲染，  
+触发bfc的元素会形成一个独立的渲染区域，这个区域里面的元素不会影响外部元素的渲染，  
 
 - 触发BFC的条件  
-1. 设置了float属性且值不为none
-2. position的值为absolute或者fixed
-3. 设置overflow并且值是除visible以外的值（比如说hidden）
+1. 设置了float属性
+2. 设置position：absolute或者fixed
+3. 设置overflow：hidden
 
 - BFC能解决哪些问题  
 1. 解决外边距塌陷问题  
-当有两个div并且上边的div设置了margin-bottom:100px属性，下边的div设置了margin-top:100px;
-我们会发现两个盒子上下距离不是200px而是100px，  
+两个div，上边div margin-bottom:100px，下边div margin-top:100px;
+此时两个盒子上下距离不是200px而是100px，  
 而解决这种情况的方式就是在其中一个盒子外部套一个具有bfc属性的父盒子
 ```css
 .container {
@@ -225,7 +225,6 @@ flex-shrink：定义了项目的缩小比例，默认为 1，即如果空间不�
 ```
 
 
-
 2、包含塌陷
 当内部盒子设置margin-top属性时，父盒子会跟随内部盒子一起移动
 
@@ -235,9 +234,9 @@ flex-shrink：定义了项目的缩小比例，默认为 1，即如果空间不�
 解决办法：给子元素加个父盒子并设置overflow:hidden
 
 3、解决浮动元素给后面的元素带来的影响
-本来三个盒子是上中下排列，给上边两个元素加浮动后，float:left，上面的两个设置了浮动的盒子将第三个盒子给盖起来了，也就是说浮动会影响后面元素的布局
+本来三个盒子是上中下排列，给上边两个元素加浮动后，float:left，第三个盒子会顶上来
 
-解决办法：给浮动元素添加一个父元素并设置overflow:hidden;属性
+解决办法：给浮动元素添加一个父元素并设置overflow:hidden
 
 ### 如何画一条 0.5px 的边框，如何解决1像素的问题
 0.5px的问题是各浏览器设备的像素比不同，导致的1px失真
@@ -298,6 +297,7 @@ initial-scale 设置为0.5
 
 1. 新方案：使用 vw 单位适配方案（将来推荐的一种方案，但目前项目中没有实际应用，故本文不做讨论）
 
+
 ### 移动端是用什么单位写的，他是怎么转成rem的。
 我们一般用px来写，一般给的是375px的设计稿，通过postcss-pxtorem，将px转为rem，再在跟组件写入方法，动态监听当前屏幕的宽度，
 改变根节点font-size的大小。
@@ -321,7 +321,7 @@ module.exports = {
 }
 ```
 > 基准值可以随便设置吗？是的
-上边的意思是：将页面分成25，每份为15，当实际页面宽度为750时，每份变成(750/25 = 30)，30*25份=750
+上边的意思是：将页面分成25份，每份为15，当实际页面宽度为750时，每份变成(750/15 = 50)
 
 在main.js中引入rem.js
 import './libs/rem.js'; 
@@ -333,7 +333,8 @@ function setRem () {
   //得到html的Dom元素
   let htmlDom = document.getElementsByTagName('html')[0];
   //设置根元素字体大小
-  htmlDom.style.fontSize= htmlWidth/25 + 'px';
+  htmlDom.style.fontSize= htmlWidth/25 + 'px'; // 此处的25表示总rem数，此处的fontsize就是上边的rootValue
+  // 此处要理清思路，比如设计稿有一条375px的线，此处fontSize 算出来是15px，15px * 25rem = 375px
 }
 // 初始化
 setRem();

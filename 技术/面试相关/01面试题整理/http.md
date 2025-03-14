@@ -103,13 +103,15 @@ Http2中新增了两个新的概念，一个是帧，一个是流。帧代表最
 1. **Expires 指定了响应的过期时间，告诉浏览器在过期时间前可以直接从浏览器缓存获取资源。**  
 例如指定资源在5分钟后过期：
 Expires: Wed, 21 Oct 2019 07:28:00 GMT
-<img src="pic/http-1.png"  height="200" />
+<img src="assets/http-1.png"  height="200" />
 10s内访问走disk catche
 
 1. Cache-Control 表示缓存控制，可以指定缓存的行为，如是否缓存、缓存时间等。常用的取值有：
 ```
 public 表示公共资源，中间商与客户端都可以缓存【不常见】
-private 表示私有资源，中间商不允许缓存，客户端允许缓存【不常见】no-cache 相当于max-age=0，如果有Etag等标志，允许协商【常见】no-store 表示数据不允许被缓存，缓存功能彻底关闭【不常见】
+private 表示私有资源，中间商不允许缓存，客户端允许缓存【不常见】
+no-cache 相当于max-age=0，如果有Etag等标志，允许协商【常见】
+no-store 表示数据不允许被缓存，缓存功能彻底关闭【不常见】
 max-age 指定缓存有效期【常见】
 s-maxage 只在public模式下有效，用来设定中间服务器的缓存有效期【不常见】
 immutable 缓存一日过期，不可协商【不常见】
@@ -117,15 +119,15 @@ must-revalidate 针对客户端有效，无论缓存是否过期，每次必须�
 proxy-revalidate 针对代理服务器有效，无论缓存是否过期，每次必须协商【不常见】
 ```
 public：表示该资源是共享的，中间服务器和浏览器都可以缓存。  
-<img src="pic/http-3.png"  height="100" />  
+<img src="assets/http-3.png"  height="100" />  
 private：表示该资源是私有的，只允许客户端缓存，不能被CDN等缓存。  
-<img src="pic/http-4.png"  height="100" />
+<img src="assets/http-4.png"  height="100" />
 
 max-age: 指定资源可以被缓存的最大时间，例如指定资源可以缓存10分钟：
 Cache-Control: max-age=600
 
-<img src="pic/http-5.png"  height="300" />
-<img src="pic/http-6.png"  height="300" />
+<img src="assets/http-5.png"  height="300" />
+<img src="assets/http-6.png"  height="300" />
 
  在设置Expires和Cache-Control时，可以同时设置两个响应头，如：  
 1.Expires: Wed, 21 Oct 2019 07:28:00 GMT  
@@ -150,7 +152,7 @@ Cache-Control: max-age=600
 - 第一种情况(通常不会)  
 首次请求资源，响应头没有设定cache-control    
 浏览器强缓存不开启。但数据在本地依然有备份。  
-如果资源携带了Etag或  Last-Modified字段
+如果资源携带了Etag或Last-Modified字段
 浏览器再次请求时，会试图去协商  
 
 - 第二种情况(通常不会)    

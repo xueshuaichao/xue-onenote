@@ -14,10 +14,9 @@ componentWillUnmount
 1.hooks不用将所有逻辑放到一个生命周期内，避免代码臃肿，可读性更高。
 2.可以方便从组件中抽离状态逻辑，单独封装。
 
-
-### 常用的hooks
+### 常用的hooks（id: 1741919129789）
 - 自变量
-useState：更新状态，usestate 的返回值为状态数据和修改状态的方法；是异步的，也可以是同步的
+useState：更新状态，usestate 的返回值为状态数据和修改状态的方法；
 useContext：用于在函数组件中使用 Context，可以很方便地获取到全局共享的数据；
 useReducer：类似于 Redux 的 reducer，可以用于管理复杂的状态逻辑，可以传入初始状态和一个 reducer 函数，返回当前状态和 dispatch 方法；
 
@@ -28,7 +27,26 @@ useCallback：缓存一个函数，避免在每次渲染时创建新的回调函
 
 useRef：用于在函数组件中获取对 DOM 元素或组件实例的引用，也可以用来存储任意可变值。
 useLayoutEffect 比 useEffect 的时机更提前一些
-useImperativeHandle：一般会和 forwardRef,
+useImperativeHandle：一般会和 forwardRef
+
+### useState是同步还是异步？（id: 1741929785464）
+useState 是 异步 的。当你调用 setState 来更新状态时，状态不会立即更新，而是会在下一个渲染周期中更新。目的是为了优化性能和确保状态一致性。具体来说，React 会将多个状态更新合并在一起，以减少不必要的重新渲染。
+```js
+const handleClick = () => {
+  setCount(count + 1);
+  console.log(count); // 这里的 count 仍然是更新之前的值
+};
+```
+如果你需要在状态更新后立即执行某些操作，可以使用 useEffect Hook。useEffect 会在组件完成渲染后执行：
+
+> 好像在setTimeout中是同步的
+```js
+setTimeout(() => {
+  setCount(1);
+  console.log(count); // 输出旧值，但更新是同步的，会立即触发渲染
+}, 0);
+```
+
 
 
 ### useLayoutEffect和useEffect的区别
@@ -305,7 +323,7 @@ useImperativeHandle(props.onRef，()=>{
 
 
 
-### react如何减少组件重渲染
+### react如何减少组件重渲染 （1741929905343）
 1. 使用 useCallback 和 useMemo 钩子（仅适用于函数组件）: 这些钩子可以帮助你记住回调函数或经常使用的值，以避免它们在每次渲染时都被创建。
 2. 使用 useRef 钩子来存储可变状态。
 3. React.PureComponent 或 React.memo（推荐使用函数组件的memo方式）: 这些组件自动实现浅比较，避免不必要的重渲染。
