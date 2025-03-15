@@ -1,9 +1,6 @@
- # Typescript
 
-###  interface和type的区别
-
+###  interface和type的区别（id: 1741914326322）
 - 都能描述对象，但 type 还能描述其他任意类型，例如 string、number 等基本类型、联合或交叉等类型。
-
 
 ```javascript
 // 都能描述对象

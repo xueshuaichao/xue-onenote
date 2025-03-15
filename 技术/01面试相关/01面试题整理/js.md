@@ -538,22 +538,13 @@ defer和async，动态创建DOM(用得最多),按需加载。
 - 让JS最后加载
 把js外部引入的文件放到页面底部，来让js最后引入，从而加快页面加载速度
 
-## 31、如何通过JS判断一个数组| 如何判断数据类型？
+## 31、如何通过JS判断一个数组| 如何判断数据类型？ （id: 1741914814762）
 
 ### typeof
-缺点：  
- 只能判断简单类型，不能判断复杂类型
- typeof null 为object，历史遗留的bug
- new Boolean()、new Number()、new String() 用typeof检测为object
-
-
-
-Array，Object，null，Date，RegExp，Error这几个类型都被typeof判断为object，所以不能使用typeof了。
-
-Number，String，Boolean，Function，undefined，如果想判断这几种类型，那就可以使用typeof。
-
-
-
+1.对简单类型判断准确，不能判断复杂类型，但是有例外（typeof null === 'object'）
+优点：
+2.能识别函数类型：typeof function() {} === 'function'
+> Number，String，Boolean，Function，undefined，symbol，如果想判断这几种类型，那就可以使用typeof。
 
 - instanceof
 用于检测构造函数的 prototype 属性是否出现在某个实例对象的原型链上。
@@ -573,6 +564,9 @@ console.log(arr instanceof Object ); // true
 还需要注意null和undefined都返回了false，这是因为它们的类型就是自己本身，并不是Object创建出来它们，所以返回了false。
 
 - 使用toString()检测对象类型
+`Object.prototype.toString.call(variable);`
+最全面的类型检测方法，能识别所有标准类型（包括 null 和 undefined）
+
 ```javascript
 var toString = Object.prototype.toString;
 
@@ -589,23 +583,16 @@ toString.call(/^[a-zA-Z]{5,20}$/); //"[object RegExp]"
 toString.call(new Error()); //"[object Error]"
 ```
 
-这样可以看到使用Object.prototype.toString.call()的方式来判断一个变量的类型是最准确的方法。
-
 封装一个获取变量准确类型的函数
 ```javascript
 function gettype(obj) {
-  var type = typeof obj;
-
-  if (type !== 'object') {
-    return type;
-  }
-  //如果不是object类型的数据，直接用typeof就能判断出来
-
   //如果是object类型数据，准确判断类型必须使用Object.prototype.toString.call(obj)的方式才能判断
   return Object.prototype.toString.call(obj).replace(/^\[object (\S+)\]$/, '$1');
 }
 ```
 - 使用ES5新增的方法isArray()
+1. 专为数组设计，判断数组类型最可靠
+2. 兼容性好（ES5+）
 
 ## 11.undefine和Null的区别？
 null表示没有对象，即此处不应该有值。转换成数值的时候为0
@@ -730,16 +717,27 @@ CommonjS 模块是运行时加载，ES6 模块是编译时加载。
 > 冷知识：浏览器可以用commonjs吗？
 > 不可以，commonjs是node的模块规范，为什么前端可以写require呢，因为有webpack编译，webpack是基于node的。
 
-## 48、对模块化的理解： （水滴）
- ~~ES6之前已经出现了js块加载的方案，最主要的是CommonJS和AMD规范。
-2.不同点：AMD规范则是非同步加载模块，允许指定回调函数。CommonJS规范加载模块是同步的，也就是说，只有加载完成，才能执行后面的操作。
-commonJS主要应用于服务器，实现同步加载，如nodejs。AMD规范应用于浏览器，如requirejs，为异步加载。
-ES6在语言规格的层面上，实现了模块功能，而且实现得相当简单，完全可以取代现有的CommonJS和AMD规范，成为浏览器和服务器通用的模块解决方案。~~
+## 48、对模块化的理解 （id: 1741917707794）
+现在主要用的是 es module
+- 模块化特点
+1. 封装性：隔离作用域，避免全局污染。
+2. 复用性：模块可被多处引用。
 
-ES6的模块化分为导出（export）与导入（import）两个功能。如果希望外部能读取模块当中的内容，就必须使用export暴露出去，然后在另外一个文件中用Import引入该模块，一个模块如果只有一个默认导出的话，就使用export default，引入的时候也可使用as进行重命名。
-1. 解决代码臃肿的问题，增加代码可读性，便于维护，
-2. 便于代码复用
-3. 模块化能按需加载
+- ESM特点
+1. 静态分析：依赖关系在编译时确定，支持 Tree-shaking。
+2. 按需加载。
+
+```js
+// 导出
+export const value = 42;
+export default function() { ... };
+
+// 导入
+import { value } from './module.js';
+import defaultFunc from './module.js';
+```
+![alt text](assets/image.png)
+
 
 ## 49、require和import的区别
 - 区别1：调用时机
@@ -775,12 +773,6 @@ import：编译时加载（效率更高），所以必须放在文件的开头
   - import 是解构的过程
 
 
-- 区别4：严格模式
-CommonJs模块和ES6模块的区别：
-1. CommonJs模块默认采用非严格模式
-2. ES6 的模块自动采用严格模式，不管你有没有在模块头部加上 “use strict”;
-3. CommonJS 模块输出的是一个值的拷贝，ES6 模块输出的是值的引用，
-
 ## exports和module.exports有什么区别？⭐⭐⭐
 两者都是commonjs的导出方式
 - 导出方式不一样
@@ -804,7 +796,7 @@ CommonJs模块和ES6模块的区别：
 2. 如果遇到异步代码，会将异步代码放到任务队列中
 3. 当同步代码执行完后，就会执行所有的宏任务，宏任务执行完成后，会判断是否有可执行的微任务；如果有，则执行微任务，完成后，执行宏任务；如果没有，则执行新的宏任务，形成事件循环。  
 ​
-<img src="pic/WX20240715-154922@2x.png"  height="300" />
+<img src="assets/WX20240715-154922@2x.png"  height="300" />
 
 三、宏任务与微任务  
 宏任务例如，setTimeout，setInterval,requestAnimationFrame，(整个script，重要），ajax  
@@ -940,7 +932,7 @@ arr.reduce((prev, cur) => {
 ## 为什么 0.1 + 0.2不等于0.3,如何解决这个问题
 因为js是用二进制处理数据，小数不同于整数，会出现小数部分永远不为0的情况，那存储是就会有数据丢失
 
-<img src="pic/WX20240715-154903@2x.png"  height="300" />
+<img src="assets/WX20240715-154903@2x.png"  height="300" />
 
 1. JS用二进制处理数据，用IEEE 754双精度浮点数标准存储Number类型。
 2. 浮点数是使用64位固定长度来表示的，其中的1位表示符号位，11位用来表示指数位，剩下的52位尾数位，由于只有52位表示尾数位。
