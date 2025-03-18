@@ -10,9 +10,47 @@ componentDidupdate
 componentWillUnmount
 ```
 
-### react hooks 与class组件的区别在于什么，Hooks有什么优势，解决了什么问题
-1.hooks不用将所有逻辑放到一个生命周期内，避免代码臃肿，可读性更高。
-2.可以方便从组件中抽离状态逻辑，单独封装。
+### react hooks 与class组件的区别在于什么，Hooks有什么优势，解决了什么问题（id: 1742197023262）
+
+1.逻辑复用更简洁（减少高阶组件/HOC 和 Render Props）
+- Class 组件：通过高阶组件（HOC）、Render Props 等模式复用逻辑，容易导致“嵌套地狱”和冗余代码。
+- Hooks：通过自定义 Hook（如 useFetch）直接共享状态逻辑，无需修改组件结构。
+```js
+// 自定义 Hook：复用数据请求逻辑
+function useFetch(url) {
+  const [data, setData] = useState(null);
+  useEffect(() => {
+    fetch(url).then(res => res.json()).then(setData);
+  }, [url]);
+  return data;
+}
+
+// 组件直接使用
+function MyComponent() {
+  const data = useFetch("/api/data");
+  return <div>{data}</div>;
+}
+```
+
+2.更清晰的代码组织（逻辑关注点分离）
+- Class 组件：生命周期方法（如 componentDidMount、componentDidUpdate）将相关逻辑拆分到不同方法中。
+- Hooks：使用 useEffect 将相关逻辑集中在一起（如订阅与取消订阅）。
+```js
+// 生命周期逻辑集中处理
+useEffect(() => {
+  const subscription = source.subscribe();
+  return () => subscription.unsubscribe(); // 清理函数
+}, [source]);
+```
+
+3.更细粒度的性能优化
+- Class 组件：依赖 shouldComponentUpdate 或 PureComponent 进行整体组件优化。
+- Hooks：通过 useMemo、useCallback 针对特定值或函数进行缓存。
+```js
+const memoizedValue = useMemo(() => computeExpensiveValue(a, b), [a, b]);
+const memoizedCallback = useCallback(() => doSomething(a, b), [a, b]);
+```
+
 
 ### 常用的hooks（id: 1741919129789）
 - 自变量

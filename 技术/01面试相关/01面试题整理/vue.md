@@ -251,17 +251,15 @@ localStorage或者sessionStroage
 
 2.利用插件vuex-persistedstate
 
-### 19、vue-router原理
+### 19、vue-router原理 （ID： 1742198641486）
 前端路由主要有两种模式，hash模式和history模式，
 - hash模式
-
 hash会在域名后面加一个#号，hash虽然会出现在url中，但不会包括在http请求中
 通过监听hashChange事件来知道路由发生变化，从而进一步去更新我们的页面
 hash模式会创建hashHistory对象,hashHistory对象有两个方法，push() 和 replace()
 
 - history模式
-
-而history没有#号，这种模式需要服务端支持。服务端接收到请求后，都指向同一个html文件，否则容易出现页面404的情况。
+history没有#号，这种模式需要服务端支持。服务端接收到请求后，都指向同一个html文件，否则容易出现页面404的情况。
 通过监听 popstate事件来监听路由改变，从而更新页面
 通过history.pushState()或者history.replaceState() 改变地址，但不会向服务器去发送请求
 

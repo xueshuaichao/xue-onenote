@@ -3,26 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="Description" content="1" />
     <title>Document</title>
   </head>
   <body>
-    <div class="box"></div>
-    <script>
-      const observer = new ResizeObserver((entries) => {
-        for (const entry of entries) {
-          // entry 包含目标元素尺寸变化的详细信息
-          console.log("元素尺寸变化:", entry.target, entry.contentRect);
-        }
-      });
-      const targetElement = document.querySelector(".box");
-      observer.observe(targetElement); // 开始监听
-    </script>
-    <style>
-      .box {
-        /* width: 800px; */
-        height: 200px;
-        border: 1px solid red;
-      }
-    </style>
+    <h1>hello world</h1>
   </body>
 </html>
