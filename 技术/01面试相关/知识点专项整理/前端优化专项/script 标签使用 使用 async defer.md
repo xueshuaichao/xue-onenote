@@ -2,7 +2,7 @@
 在前端优化中，避免阻塞渲染的脚本是提升首屏加载速度的关键策略之一。通过合理使用 `<script> `标签的 async 和 defer 属性，可以显著减少 JavaScript 对页面渲染的阻塞。以下是详细解析：
 
 一、默认的脚本加载行为
-默认情况下，浏览器解析 HTML 时遇到 <script> 标签会立即停止解析（即 阻塞 DOM 构建），并执行以下操作：
+默认情况下，浏览器解析 HTML 时遇到 `<script>` 标签会立即停止解析（即 阻塞 DOM 构建），并执行以下操作：
 1.下载脚本：从服务器获取脚本文件。
 2.执行脚本：立即执行下载的脚本。
 3.恢复解析：脚本执行完成后，继续解析后续 HTML。
@@ -69,9 +69,9 @@ HTML 解析开始
 2.谨慎使用 async：
   - 仅用于完全独立且无需等待 DOM 或其他脚本的代码（如监控脚本）。
 3.内联脚本的优化：
-  - 内联脚本（无 src 的 <script>）无法使用 async/defer，建议将其移至页面底部或异步加载。
+  - 内联脚本（无 src 的 `<script>`）无法使用 async/defer，建议将其移至页面底部或异步加载。
 4.动态脚本加载：
-  - 通过 JavaScript 动态创建 <script> 标签并插入 DOM，默认行为类似 async，可手动设置为 defer：
+  - 通过 JavaScript 动态创建 `<script>` 标签并插入 DOM，默认行为类似 async，可手动设置为 defer：
 
 ```js
 const script = document.createElement('script');
