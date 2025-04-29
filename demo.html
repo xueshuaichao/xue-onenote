@@ -6,61 +6,17 @@
     <title>Document</title>
 </head>
 <body>
+  <div tabindex="0"></div>
     <script>
-async function async1() {
-  console.log("async1 start");
-  await async2();
-  console.log("async1 end");
-}
 
-async function async2() {
-  console.log("async2");
-  await async3();
-  console.log("async3 end");
-  await async4();
-  console.log("async2 end");
-}
-
-async function async3() {
-  console.log("async3");
-}
-
-async function async4() {
-  console.log("async4");
-}
-
-console.log("js start");
-
-setTimeout(() => {
-  console.log("timeout");
-}, 0);
-
-async1();
-
-new Promise((resolve) => {
-  console.log("promise");
-  resolve("resolve");
-})
-  .then("then")
-  .then((data) => {
-    console.log(data);
-  });
-
-console.log("js end");
-// 微 then async2完成
-// 宏 timeout 
-
-// js start
-// "async1 start
-// async2
-// async3
-// promise
-// async3 end
-// async4
-// async2 end
-// then
-// async1 end
-// timeout
+    
 </script>
+<style>
+  div {
+    width: 200px;
+    height: 200px;
+    border: 1px solid red;
+  }
+</style>
 </body>
 </html>
